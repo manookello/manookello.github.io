@@ -180,12 +180,21 @@ h1 {
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 .btn-block { width: 100%; }
 
+/* Brand marks. The sprite must stay in flow-adjacent layout - display:none
+   would stop <use> resolving in some browsers - so it is collapsed instead. */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon { width: 1.05em; height: 1.05em; flex: none; fill: currentColor; }
+
 .hero-links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0; padding: 0; }
 .hero-links a {
+  display: inline-flex; align-items: center; gap: .45rem;
   font-family: var(--mono); font-size: .82rem; color: var(--text-faint);
-  text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px;
+  text-decoration: none;
 }
-.hero-links a:hover { color: var(--accent); border-color: var(--accent); }
+/* Underline the label only, so it does not cut through the mark. */
+.hero-links a span { border-bottom: 1px solid var(--rule-strong); padding-bottom: 2px; }
+.hero-links a:hover { color: var(--accent); }
+.hero-links a:hover span { border-color: var(--accent); }
 
 .hero-photo { margin: 0; }
 .hero-photo img {
@@ -385,6 +394,9 @@ h1 {
 .contact-list a { text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
 .contact-list a:hover { color: var(--accent); border-color: var(--accent); }
 .contact-profiles { display: flex; flex-wrap: wrap; gap: 1rem; }
+.contact-profiles a { display: inline-flex; align-items: center; gap: .4rem; border-bottom: 0; }
+.contact-profiles a span { border-bottom: 1px solid var(--rule-strong); }
+.contact-profiles a:hover span { border-color: var(--accent); }
 
 /* form */
 
