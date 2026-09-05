@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amos Odhiambo — Data Scientist &amp; ML Engineer</title>
+<meta name="description" content="Data scientist and ML engineer in Nairobi. I build end-to-end data systems — SQL and statistics through models, serving and monitoring — and measure whether they actually work.">
+
+<meta property="og:title" content="Amos Odhiambo — Data Scientist &amp; ML Engineer">
+<meta property="og:description" content="End-to-end data systems, measured honestly. Eight production-shaped projects with real results.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manookello.github.io/">
+<meta property="og:image" content="https://manookello.github.io/assets/amos-640.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Nairobi, Kenya</p>
+        <h1>Amos Odhiambo</h1>
+        <p class="lede">
+          Data scientist and ML engineer. I build end-to-end data systems — SQL and statistics
+          through models, serving and monitoring — and I measure whether they actually work,
+          <em>including when the simple model wins.</em>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">See the work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+        <ul class="hero-links" aria-label="Profiles">
+          <li><a href="https://github.com/manookello" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/amos-odhiambo-8313a0305/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.kaggle.com/amosokello451" target="_blank" rel="noopener">Kaggle</a></li>
+        </ul>
+      </div>
+
+      <figure class="hero-photo">
+        <img src="assets/amos-640.jpg"
+             srcset="assets/amos-320.jpg 320w, assets/amos-640.jpg 640w"
+             sizes="(max-width: 780px) 190px, 300px"
+             width="640" height="640"
+             alt="Amos Odhiambo" fetchpriority="high">
+      </figure>
+    </div>
+
+    <div class="shell">
+      <dl class="stats" aria-label="At a glance">
+        <div class="stat"><dt>Projects, end to end</dt><dd>8</dd></div>
+        <div class="stat"><dt>Tests, all passing</dt><dd>450</dd></div>
+        <div class="stat"><dt>Largest dataset</dt><dd>2.1M<span class="unit">rows</span></dd></div>
+        <div class="stat"><dt>Repos with green CI</dt><dd>8<span class="unit">/ 8</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================ WORK ============================ -->
+  <section class="band" id="work">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>Four projects in depth. Every figure below is produced by code in the repository, and every
+          repository states what its results do <em>not</em> support.</p>
+      </div>
+
+      <div class="cases">
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Customer Churn MLOps Platform</h3>
+            <p class="case-finding">A threshold chosen from retention economics rather than 0.5 was worth
+              <strong>+19.7% campaign profit</strong> — on the same model.</p>
+          </div>
+          <div class="case-body">
+            <p>An end-to-end system for telco churn: cross-validated model selection, isotonic calibration
+              on a held-out split, MLflow tracking with a working model registry, a validated FastAPI
+              service, a Docker image, and drift monitoring built from first principles.</p>
+            <ul class="metrics">
+              <li><span>ROC AUC</span><b>0.844</b></li>
+              <li><span>PR AUC</span><b>0.632</b></li>
+              <li><span>Profit uplift</span><b>+$1,470</b></li>
+            </ul>
+            <p class="aside">Logistic regression beat XGBoost in cross-validation, so that is what ships.
+              The drift detector needed a Bonferroni correction — without it, 19 features produced roughly
+              one false alarm on every clean window.</p>
+            <p class="stack">Python · scikit-learn · XGBoost · MLflow · FastAPI · Docker · GitHub Actions</p>
+            <a class="case-link" href="https://github.com/manookello/mlops-churn-platform" target="_blank" rel="noopener">View repository</a>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Demand Forecasting</h3>
+            <p class="case-finding">A forecasting method from 2000 beat gradient boosting — while fitting
+              <strong>590× faster</strong>.</p>
+          </div>
+          <div class="case-body">
+            <p>Daily electricity demand over 1,440 days, evaluated across 25 rolling origins with eight
+              models refitted at every one — rather than the single train/test split that makes a
+              forecasting result mostly luck.</p>
+            <ul class="metrics">
+              <li><span>Rolling origins</span><b>25</b></li>
+              <li><span>Best MASE</span><b>0.738</b></li>
+              <li><span>Interval coverage</span><b>96.1%</b></li>
+            </ul>
+            <p class="aside">On a single holdout, SARIMA wins and seasonal naive comes last. Across 25 folds,
+              Theta wins and seasonal naive is sixth of eight. The Gaussian prediction interval under-covers
+              at 93.3%; split conformal holds 96.1%.</p>
+            <p class="stack">Python · statsmodels · scikit-learn · conformal prediction</p>
+            <a class="case-link" href="https://github.com/manookello/demand-forecasting" target="_blank" rel="noopener">View repository</a>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Retail Analytics in SQL</h3>
+            <p class="case-finding">The fourth-largest product by revenue <strong>sold nothing</strong> —
+              80,995 units ordered at 09:15, cancelled at 09:27.</p>
+          </div>
+          <div class="case-body">
+            <p>Cohort retention, RFM segmentation, revenue concentration and basket affinity over 1,067,371
+              transaction lines, written as reviewable SQL on DuckDB rather than as pandas chains — plus a
+              Streamlit dashboard reading the committed results.</p>
+            <ul class="metrics">
+              <li><span>Transaction lines</span><b>1.07M</b></li>
+              <li><span>Top 10% of customers</span><b>63.9%</b></li>
+              <li><span>Repeat rate</span><b>72.4%</b></li>
+            </ul>
+            <p class="aside">"Revenue" ranges over £3.4M depending on which exclusions apply — and not
+              monotonically, since removing cancellations raises the total. Retention does not decay, which
+              says this is a wholesale business, not consumer e-commerce.</p>
+            <p class="stack">SQL · DuckDB · Python · pandas · Streamlit</p>
+            <a class="case-link" href="https://github.com/manookello/retail-analytics-sql" target="_blank" rel="noopener">View repository</a>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Semantic Search &amp; RAG</h3>
+            <p class="case-finding">The embedding model <strong>lost to BM25</strong> — and ran 9× slower.</p>
+          </div>
+          <div class="case-body">
+            <p>Retrieval measured against ground truth rather than demonstrated on three cherry-picked
+              queries: 2,067 documents, 10,570 labelled questions, scored on Recall@k, MRR and nDCG over a
+              2,000-query sample.</p>
+            <ul class="metrics">
+              <li><span>Recall@1, reranked</span><b>0.883</b></li>
+              <li><span>Hybrid miss rate</span><b>4.1%</b></li>
+              <li><span>Queries evaluated</span><b>2,000</b></li>
+            </ul>
+            <p class="aside">Cross-encoder reranking was the largest single win — Recall@1 from 0.755 to
+              0.883 — at 175× the latency, which is the argument for two-stage retrieval rather than
+              against reranking. BM25 is implemented from scratch so the ranking stays auditable.</p>
+            <p class="stack">Python · sentence-transformers · BM25 · FastAPI · Claude API</p>
+            <a class="case-link" href="https://github.com/manookello/semantic-search-rag" target="_blank" rel="noopener">View repository</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ---------- everything else ---------- -->
+      <h3 class="subhead">Also on GitHub</h3>
+      <ul class="more">
+        <li>
+          <div><a href="https://github.com/manookello/credit-risk-scorecard" target="_blank" rel="noopener">Credit Risk Scorecard</a>
+            <p>Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with an
+              economics-derived approval cut-off and a fairness audit across four protected attributes.</p></div>
+          <span class="more-metric">AUC 0.777 · KS 0.417</span>
+        </li>
+        <li>
+          <div><a href="https://github.com/manookello/ab-test-toolkit" target="_blank" rel="noopener">A/B Test Toolkit</a>
+            <p>Experiment analysis with every method validated by simulation against known ground truth —
+              power, CUPED, sample-ratio mismatch and Simpson's paradox detection.</p></div>
+          <span class="more-metric">Peeking: 5% → 24.9%</span>
+        </li>
+        <li>
+          <div><a href="https://github.com/manookello/customer-insights-eda" target="_blank" rel="noopener">Customer Insights EDA</a>
+            <p>41,188 campaign contacts analysed with effect sizes and confidence intervals rather than
+              p-values, ending in quantified recommendations.</p></div>
+          <span class="more-metric">4.6× timing effect</span>
+        </li>
+        <li>
+          <div><a href="https://github.com/manookello/pytorch-vision-classifier" target="_blank" rel="noopener">PyTorch Vision Classifier</a>
+            <p>A residual CNN trained under a hard compute budget, with Grad-CAM explanations and
+              numerically verified TorchScript and ONNX exports.</p></div>
+          <span class="more-metric">91.8% · 218K params</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section class="band band-alt" id="about">
+    <div class="shell about-grid">
+      <div>
+        <h2>About</h2>
+        <p>I work across the whole path a data problem takes — from the SQL that shapes the raw table,
+          through the statistics that decide whether an effect is real, to the model, the service that
+          serves it and the monitoring that tells you when it has stopped working.</p>
+        <p>What I care about most is honest evaluation. It is easy to make a model look good; the harder
+          and more useful skill is knowing whether it is. So every project here tunes its thresholds on
+          validation and scores the test set once, reports effect sizes rather than bare p-values, and
+          carries a written account of what the results do not support.</p>
+        <p>That discipline keeps producing findings I did not expect — a keyword search beating a neural
+          retriever, a 25-year-old forecasting method beating gradient boosting, a bestselling product
+          that turned out to have sold nothing at all. Those are in the write-ups too.</p>
+        <p>I studied at Moringa School in Nairobi, and I am open to data science, analytics and ML
+          engineering roles.</p>
+      </div>
+
+      <div class="skills">
+        <h3>Toolkit</h3>
+        <div class="skill-group">
+          <h4>Languages &amp; data</h4>
+          <p>Python · SQL · pandas · NumPy · DuckDB · PostgreSQL · MySQL · Excel</p>
+        </div>
+        <div class="skill-group">
+          <h4>Modelling</h4>
+          <p>scikit-learn · XGBoost · PyTorch · statsmodels · SHAP · SciPy</p>
+        </div>
+        <div class="skill-group">
+          <h4>Production</h4>
+          <p>MLflow · FastAPI · Docker · GitHub Actions · pytest · ONNX</p>
+        </div>
+        <div class="skill-group">
+          <h4>Communication</h4>
+          <p>Streamlit · Matplotlib · Plotly · Power BI · technical writing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section class="band" id="contact">
+    <div class="shell contact-grid">
+      <div>
+        <h2>Get in touch</h2>
+        <p>Open to data science, analytics and ML engineering roles, and happy to talk through any of the
+          projects above in detail.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">Email</span>
+            <a href="mailto:amomano41@gmail.com">amomano41@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact-label">Phone</span>
+            <a href="tel:+254795330096">+254 795 330 096</a>
+          </li>
+          <li>
+            <span class="contact-label">Location</span>
+            <span>Nairobi, Kenya</span>
+          </li>
+          <li>
+            <span class="contact-label">Profiles</span>
+            <span class="contact-profiles">
+              <a href="https://github.com/manookello" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://www.linkedin.com/in/amos-odhiambo-8313a0305/" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://www.kaggle.com/amosokello451" target="_blank" rel="noopener">Kaggle</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <form id="contact-form" class="form" novalidate>
+        <!-- Web3Forms delivers the message to amomano41@gmail.com.
+             Replace the access key below with the one emailed from web3forms.com. -->
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New message from your portfolio">
+        <input type="hidden" name="from_name" value="manookello.github.io">
+        <!-- Honeypot: hidden from people, filled in by bots. -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="honeypot">
+
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Mwangi">
+        </div>
+        <div class="field">
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@company.com">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="What would you like to talk about?"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Send message</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-fallback">Prefer email? Write to
+          <a href="mailto:amomano41@gmail.com">amomano41@gmail.com</a> directly.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+    <p>Built with plain HTML, CSS and JavaScript. <a href="https://github.com/manookello/manookello.github.io" target="_blank" rel="noopener">Source</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
