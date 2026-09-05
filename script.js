@@ -45,11 +45,99 @@
   toggle.addEventListener("click", function () {
     var next = currentTheme() === "dark" ? "light" : "dark";
     applyTheme(next);
+    // The hero plot takes its colours from the theme tokens, so it has to be
+    // repainted; drawPlot is hoisted from the block below.
+    drawPlot();
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch (error) {
       /* private browsing: the toggle still works for this visit */
     }
+  });
+
+  /* ------------------------------------------------------------ hero plot */
+
+  /* A two-class scatter under a decision boundary — the picture a classifier
+     actually makes. Static: it is drawn once per size and per theme, so there
+     is no animation loop to cost battery or fight prefers-reduced-motion. */
+  var plot = document.getElementById("hero-plot");
+
+  function drawPlot() {
+    if (!plot || !plot.getContext) return;
+    var hero = plot.parentNode;
+    var width = hero.offsetWidth;
+    var height = hero.offsetHeight;
+    if (!width || !height) return;
+
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    plot.width = Math.round(width * dpr);
+    plot.height = Math.round(height * dpr);
+
+    var ctx = plot.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    var styles = getComputedStyle(document.documentElement);
+    var classA = styles.getPropertyValue("--accent").trim() || "#f5a524";
+    var classB = styles.getPropertyValue("--link").trim() || "#6fb3f2";
+    var line = styles.getPropertyValue("--rule-strong").trim() || "#2c3d5c";
+
+    // Deterministic, so the layout is identical on every load and every device.
+    var seed = 20260905;
+    function random() {
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      return seed / 2147483648;
+    }
+    function gauss() {
+      return Math.sqrt(-2 * Math.log(random() || 1e-9)) * Math.cos(2 * Math.PI * random());
+    }
+
+    // The boundary: a smooth curve across the panel, which the two clouds
+    // sit either side of.
+    function boundaryY(x) {
+      var t = x / width;
+      return height * (0.72 - 0.42 * t + 0.10 * Math.sin(t * 3.4));
+    }
+
+    ctx.save();
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([7, 6]);
+    ctx.beginPath();
+    for (var x = 0; x <= width; x += 6) {
+      if (x === 0) ctx.moveTo(x, boundaryY(x));
+      else ctx.lineTo(x, boundaryY(x));
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    // Points, pushed off the boundary by a margin so the separation reads.
+    function cloud(colour, side, count) {
+      ctx.fillStyle = colour;
+      for (var i = 0; i < count; i++) {
+        var px = random() * width;
+        var margin = 14 + Math.abs(gauss()) * height * 0.17;
+        var py = boundaryY(px) + side * margin;
+        if (py < -10 || py > height + 10) continue;
+        ctx.globalAlpha = 0.30 + random() * 0.45;
+        ctx.beginPath();
+        ctx.arc(px, py, 1.6 + random() * 1.9, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    var density = Math.round(width / 5);
+    cloud(classA, -1, density);
+    cloud(classB, 1, density);
+  }
+
+  drawPlot();
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawPlot, 180);
   });
 
   /* ------------------------------------------------------------ nav state */

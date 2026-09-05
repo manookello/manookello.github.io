@@ -153,7 +153,29 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; line-height: 1.1
 
 /* ---------------------------------------------------------------- hero */
 
-.hero { padding: clamp(2.75rem, 7vw, 5.5rem) 0 clamp(2rem, 4vw, 3rem); }
+.hero {
+  padding: clamp(2.75rem, 7vw, 5.5rem) 0 clamp(2rem, 4vw, 3rem);
+  position: relative; overflow: hidden;
+}
+/* Plot paper, faded out towards the edges so it never reads as a border. */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: .55;
+  -webkit-mask-image: radial-gradient(120% 90% at 30% 35%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(120% 90% at 30% 35%, #000 25%, transparent 78%);
+}
+.hero-plot {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  opacity: .5;
+}
+/* Lift the actual content above both layers. */
+.hero > .shell { position: relative; z-index: 1; }
 
 .hero-grid {
   display: grid;
@@ -261,6 +283,34 @@ h1 {
 /* Alternate which side the figure sits on, so four stacked cards have rhythm. */
 .case:nth-child(even) { grid-template-columns: minmax(0, 54%) minmax(0, 46%); }
 .case:nth-child(even) .case-media { order: 2; }
+
+/* Context photo: says what domain the project is in before you read a word.
+   order:-1 keeps it on top through the alternation above. */
+.case-banner {
+  grid-column: 1 / -1; order: -1;
+  position: relative; margin: 0; overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+.case-banner img {
+  display: block; width: 100%;
+  /* Close to the exported 5:1, so object-fit has almost nothing to crop. */
+  height: clamp(132px, 19vw, 210px);
+  object-fit: cover;
+}
+/* Scrim, so the caption holds up over the brighter frames. */
+.case-banner::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--bg) 92%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 38%,
+    transparent 78%);
+}
+.case-banner figcaption {
+  position: absolute; left: clamp(1.1rem, 2.5vw, 1.5rem); bottom: .7rem; z-index: 1;
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--accent);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
+}
 
 .case-media {
   margin: 0;
@@ -487,6 +537,19 @@ h1 {
   display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between;
 }
 .footer p { margin: 0; font-family: var(--mono); font-size: .76rem; color: var(--text-faint); }
+
+/* Credits are a legal requirement, not a headline: present but folded away. */
+.credits { margin-top: 1.1rem; border-top: 1px solid var(--rule); padding-top: .9rem; }
+.credits summary {
+  cursor: pointer; font-family: var(--mono); font-size: .72rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint);
+}
+.credits summary:hover { color: var(--accent); }
+.credits ul { margin: .8rem 0 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.credits li, .credits > p {
+  font-size: .76rem; line-height: 1.6; color: var(--text-faint); margin: 0;
+}
+.credits > p { margin-top: .7rem; }
 
 /* ---------------------------------------------------------------- responsive */
 

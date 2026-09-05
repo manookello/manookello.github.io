@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -29,15 +29,23 @@
     "addressLocality": "Nairobi",
     "addressCountry": "KE"
   },
-  "alumniOf": {
-    "@type": "EducationalOrganization",
-    "name": "Moringa School",
-    "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" }
-  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "KCA University",
+      "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" }
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Moringa School",
+      "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" }
+    }
+  ],
   "hasCredential": {
     "@type": "EducationalOccupationalCredential",
     "credentialCategory": "degree",
-    "name": "Economics and Statistics"
+    "name": "Economics and Statistics",
+    "recognizedBy": { "@type": "CollegeOrUniversity", "name": "KCA University" }
   },
   "knowsAbout": [
     "Econometrics",
@@ -102,6 +110,10 @@
 
   <!-- ============================ HERO ============================ -->
   <section class="hero" id="top">
+    <!-- Drawn by script.js: a two-class scatter under a decision boundary.
+         Decorative only; the section reads identically without it. -->
+    <canvas class="hero-plot" id="hero-plot" aria-hidden="true"></canvas>
+
     <div class="shell hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Nairobi, Kenya <span class="eyebrow-sep">·</span> Economics &amp; Statistics</p>
@@ -159,6 +171,11 @@
       <div class="cases">
 
         <article class="case">
+          <figure class="case-banner">
+            <img src="assets/photos/churn.webp" width="1440" height="288" loading="lazy"
+                 alt="A telecommunications tower silhouetted against a low sun.">
+            <figcaption>Telecoms · subscriber retention</figcaption>
+          </figure>
           <figure class="case-media">
             <img src="assets/figures/churn-profit.webp" width="1000" height="714" loading="lazy"
                  alt="Expected campaign profit plotted against the decision threshold, with the profit-maximising cut-off at 0.27 marked against the naive 0.5.">
@@ -185,6 +202,11 @@
         </article>
 
         <article class="case">
+          <figure class="case-banner">
+            <img src="assets/photos/forecast.webp" width="1440" height="288" loading="lazy"
+                 alt="Electricity transmission pylons crossing open country at sunset.">
+            <figcaption>Energy · daily electricity demand</figcaption>
+          </figure>
           <figure class="case-media">
             <img src="assets/figures/forecast-models.webp" width="1000" height="611" loading="lazy"
                  alt="MASE by model across 25 rolling origins, with Theta lowest and the naive baselines above the seasonal naive benchmark line.">
@@ -211,6 +233,11 @@
         </article>
 
         <article class="case">
+          <figure class="case-banner">
+            <img src="assets/photos/retail.webp" width="1440" height="288" loading="lazy"
+                 alt="Pallet racking stacked to the roof in a distribution warehouse.">
+            <figcaption>Wholesale · transaction-level retail</figcaption>
+          </figure>
           <figure class="case-media">
             <img src="assets/figures/retail-cohorts.webp" width="1000" height="636" loading="lazy"
                  alt="Cohort retention heatmap: 25 monthly acquisition cohorts down the side, months since first purchase across the top, retention percentage in each cell.">
@@ -237,6 +264,11 @@
         </article>
 
         <article class="case">
+          <figure class="case-banner">
+            <img src="assets/photos/rag.webp" width="1440" height="288" loading="lazy"
+                 alt="A long library reading room lined with shelves of bound volumes.">
+            <figcaption>Retrieval · technical document corpus</figcaption>
+          </figure>
           <figure class="case-media">
             <img src="assets/figures/rag-metrics.webp" width="1000" height="565" loading="lazy"
                  alt="Recall, MRR and nDCG compared across BM25, dense retrieval, hybrid fusion and hybrid with reranking.">
@@ -324,11 +356,11 @@
 
         <div class="credentials">
           <h3>Background</h3>
-          <!-- TODO: add the university and years to the degree entry once confirmed. -->
+          <!-- TODO: add the years to the degree entry once confirmed. -->
           <ol class="cred-list">
             <li class="cred-item">
               <p class="cred-title">Economics &amp; Statistics</p>
-              <p class="cred-org">Undergraduate degree</p>
+              <p class="cred-org">KCA University · Nairobi</p>
               <p class="cred-note">Econometrics, statistical inference, index numbers and time series —
                 where the habit of asking what a number would have been otherwise comes from.</p>
             </li>
@@ -445,6 +477,26 @@
   <div class="shell footer-inner">
     <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
     <p>Built with plain HTML, CSS and JavaScript. <a href="https://github.com/manookello/manookello.github.io" target="_blank" rel="noopener">Source</a></p>
+  </div>
+
+  <!-- CC BY-SA requires the author, the licence and a link. Every chart on the
+       page is generated by the project code and needs no credit; only the four
+       context photographs do. -->
+  <div class="shell">
+    <details class="credits">
+      <summary>Photo credits</summary>
+      <ul>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Sunset_Over_Milad_Tower.jpg" target="_blank" rel="noopener">Sunset Over Milad Tower</a>
+          — Salehi1990mohsen, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Pylons,_Clouds_and_Sunset-_worcester_-_panoramio.jpg" target="_blank" rel="noopener">Pylons, Clouds and Sunset</a>
+          — Azwi, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Modern_warehouse_with_pallet_rack_storage_system.jpg" target="_blank" rel="noopener">Modern warehouse with pallet rack storage system</a>
+          — Axisadman, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Bibliotheque_Sainte-Barbe_2010-06-16_n20.jpg" target="_blank" rel="noopener">Bibliothèque Sainte-Barbe</a>
+          — Marie-Lan Nguyen, <a href="https://creativecommons.org/licenses/by/2.0/fr/deed.en" target="_blank" rel="noopener noreferrer">CC BY 2.0 FR</a></li>
+      </ul>
+      <p>All four are colour-graded here; the originals are unmodified at the links above.</p>
+    </details>
   </div>
 </footer>
 
