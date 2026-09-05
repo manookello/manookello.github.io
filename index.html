@@ -290,9 +290,10 @@
       </div>
 
       <form id="contact-form" class="form" novalidate>
-        <!-- Web3Forms delivers the message to amomano41@gmail.com.
-             Replace the access key below with the one emailed from web3forms.com. -->
-        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+        <!-- Web3Forms delivers the message to amomano41@gmail.com. This key is
+             public by design: it only authorises delivery to the verified
+             address, so it cannot be used to send mail anywhere else. -->
+        <input type="hidden" name="access_key" value="2a07810e-1dc0-400d-a2a6-6e00e7d7375a">
         <input type="hidden" name="subject" value="New message from your portfolio">
         <input type="hidden" name="from_name" value="manookello.github.io">
         <!-- Honeypot: hidden from people, filled in by bots. -->
