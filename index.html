@@ -93,12 +93,15 @@
       <div class="cases">
 
         <article class="case">
-          <div class="case-head">
+          <figure class="case-media">
+            <img src="assets/figures/churn-profit.webp" width="1000" height="714" loading="lazy"
+                 alt="Expected campaign profit plotted against the decision threshold, with the profit-maximising cut-off at 0.27 marked against the naive 0.5.">
+            <figcaption>Profit against decision threshold — the optimum sits at 0.27, not 0.5.</figcaption>
+          </figure>
+          <div class="case-body">
             <h3>Customer Churn MLOps Platform</h3>
             <p class="case-finding">A threshold chosen from retention economics rather than 0.5 was worth
               <strong>+19.7% campaign profit</strong> — on the same model.</p>
-          </div>
-          <div class="case-body">
             <p>An end-to-end system for telco churn: cross-validated model selection, isotonic calibration
               on a held-out split, MLflow tracking with a working model registry, a validated FastAPI
               service, a Docker image, and drift monitoring built from first principles.</p>
@@ -116,12 +119,15 @@
         </article>
 
         <article class="case">
-          <div class="case-head">
+          <figure class="case-media">
+            <img src="assets/figures/forecast-models.webp" width="1000" height="611" loading="lazy"
+                 alt="MASE by model across 25 rolling origins, with Theta lowest and the naive baselines above the seasonal naive benchmark line.">
+            <figcaption>MASE across 25 rolling origins. Below the line beats seasonal naive.</figcaption>
+          </figure>
+          <div class="case-body">
             <h3>Demand Forecasting</h3>
             <p class="case-finding">A forecasting method from 2000 beat gradient boosting — while fitting
               <strong>590× faster</strong>.</p>
-          </div>
-          <div class="case-body">
             <p>Daily electricity demand over 1,440 days, evaluated across 25 rolling origins with eight
               models refitted at every one — rather than the single train/test split that makes a
               forecasting result mostly luck.</p>
@@ -139,12 +145,15 @@
         </article>
 
         <article class="case">
-          <div class="case-head">
+          <figure class="case-media">
+            <img src="assets/figures/retail-cohorts.webp" width="1000" height="636" loading="lazy"
+                 alt="Cohort retention heatmap: 25 monthly acquisition cohorts down the side, months since first purchase across the top, retention percentage in each cell.">
+            <figcaption>Cohort retention by acquisition month — flat, not decaying.</figcaption>
+          </figure>
+          <div class="case-body">
             <h3>Retail Analytics in SQL</h3>
             <p class="case-finding">The fourth-largest product by revenue <strong>sold nothing</strong> —
               80,995 units ordered at 09:15, cancelled at 09:27.</p>
-          </div>
-          <div class="case-body">
             <p>Cohort retention, RFM segmentation, revenue concentration and basket affinity over 1,067,371
               transaction lines, written as reviewable SQL on DuckDB rather than as pandas chains — plus a
               Streamlit dashboard reading the committed results.</p>
@@ -162,11 +171,14 @@
         </article>
 
         <article class="case">
-          <div class="case-head">
+          <figure class="case-media">
+            <img src="assets/figures/rag-metrics.webp" width="1000" height="565" loading="lazy"
+                 alt="Recall, MRR and nDCG compared across BM25, dense retrieval, hybrid fusion and hybrid with reranking.">
+            <figcaption>Retrieval quality by system, over 2,000 labelled queries.</figcaption>
+          </figure>
+          <div class="case-body">
             <h3>Semantic Search &amp; RAG</h3>
             <p class="case-finding">The embedding model <strong>lost to BM25</strong> — and ran 9× slower.</p>
-          </div>
-          <div class="case-body">
             <p>Retrieval measured against ground truth rather than demonstrated on three cherry-picked
               queries: 2,067 documents, 10,570 labelled questions, scored on Recall@k, MRR and nDCG over a
               2,000-query sample.</p>
@@ -189,24 +201,32 @@
       <h3 class="subhead">Also on GitHub</h3>
       <ul class="more">
         <li>
+          <img class="more-thumb" src="assets/figures/credit-ks.webp" width="420" height="300" loading="lazy"
+               alt="Kolmogorov-Smirnov separation curve for the credit scorecard.">
           <div><a href="https://github.com/manookello/credit-risk-scorecard" target="_blank" rel="noopener">Credit Risk Scorecard</a>
             <p>Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with an
               economics-derived approval cut-off and a fairness audit across four protected attributes.</p></div>
           <span class="more-metric">AUC 0.777 · KS 0.417</span>
         </li>
         <li>
+          <img class="more-thumb" src="assets/figures/abtest-peeking.webp" width="420" height="300" loading="lazy"
+               alt="False positive rate rising with the number of interim looks at an A/B test.">
           <div><a href="https://github.com/manookello/ab-test-toolkit" target="_blank" rel="noopener">A/B Test Toolkit</a>
             <p>Experiment analysis with every method validated by simulation against known ground truth —
               power, CUPED, sample-ratio mismatch and Simpson's paradox detection.</p></div>
           <span class="more-metric">Peeking: 5% → 24.9%</span>
         </li>
         <li>
+          <img class="more-thumb" src="assets/figures/eda-macro.webp" width="460" height="367" loading="lazy"
+               alt="Term deposit subscription rate by euribor quartile, far above baseline in the lowest quartile.">
           <div><a href="https://github.com/manookello/customer-insights-eda" target="_blank" rel="noopener">Customer Insights EDA</a>
             <p>41,188 campaign contacts analysed with effect sizes and confidence intervals rather than
               p-values, ending in quantified recommendations.</p></div>
           <span class="more-metric">4.6× timing effect</span>
         </li>
         <li>
+          <img class="more-thumb" src="assets/figures/vision-gradcam.webp" width="420" height="384" loading="lazy"
+               alt="Grad-CAM heatmaps overlaid on FashionMNIST garments, showing which pixels drove each prediction.">
           <div><a href="https://github.com/manookello/pytorch-vision-classifier" target="_blank" rel="noopener">PyTorch Vision Classifier</a>
             <p>A residual CNN trained under a hard compute budget, with Grad-CAM explanations and
               numerically verified TorchScript and ONNX exports.</p></div>

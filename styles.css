@@ -236,19 +236,47 @@ h1 {
   border-radius: var(--radius);
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 38%) minmax(0, 62%);
+  grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+  align-items: start;
 }
+/* Alternate which side the figure sits on, so four stacked cards have rhythm. */
+.case:nth-child(even) { grid-template-columns: minmax(0, 54%) minmax(0, 46%); }
+.case:nth-child(even) .case-media { order: 2; }
 
-.case-head {
-  padding: clamp(1.4rem, 3vw, 2rem);
-  border-right: 1px solid var(--rule);
-  background: linear-gradient(160deg, var(--accent-soft), transparent 70%);
+.case-media {
+  margin: 0;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  align-self: stretch;
 }
-.case-head h3 { font-size: 1.28rem; letter-spacing: -.01em; margin-bottom: .8rem; }
-.case-finding { margin: 0; font-size: 1.02rem; line-height: 1.5; color: var(--text-soft); }
-.case-finding strong { color: var(--accent); font-weight: 700; }
+.case-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* The charts are drawn on white, so they sit on their own plate rather than
+     on the page ground - the same figure reads correctly in either theme. */
+  background: #ffffff;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  padding: 6px;
+}
+.case-media figcaption {
+  font-family: var(--mono);
+  font-size: .72rem;
+  line-height: 1.55;
+  color: var(--text-faint);
+}
 
 .case-body { padding: clamp(1.4rem, 3vw, 2rem); }
+.case-body h3 { font-size: 1.28rem; letter-spacing: -.01em; margin-bottom: .7rem; }
+.case-finding {
+  margin: 0 0 1.2rem;
+  font-size: 1.02rem; line-height: 1.5; color: var(--text-soft);
+  padding-bottom: 1.1rem; border-bottom: 1px solid var(--rule);
+}
+.case-finding strong { color: var(--accent); font-weight: 700; }
 .case-body > p { margin: 0 0 1.1rem; }
 
 .metrics {
@@ -295,9 +323,18 @@ h1 {
 
 .more { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
 .more li {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.5rem; align-items: baseline;
+  display: grid; grid-template-columns: 132px minmax(0, 1fr) auto;
+  gap: 1.25rem; align-items: center;
   padding: 1.15rem 0; border-bottom: 1px solid var(--rule);
+}
+.more-thumb {
+  width: 132px; height: 88px;
+  /* contain, not cover: cropping a chart cuts off the axis that explains it. */
+  object-fit: contain;
+  background: #ffffff;
+  border: 1px solid var(--rule-strong);
+  border-radius: 5px;
+  padding: 3px;
 }
 .more a { font-family: var(--display); font-weight: 600; font-size: 1.02rem; color: var(--text); text-decoration: none; }
 .more a:hover { color: var(--accent); }
@@ -395,8 +432,8 @@ h1 {
 /* ---------------------------------------------------------------- responsive */
 
 @media (max-width: 900px) {
-  .case { grid-template-columns: 1fr; }
-  .case-head { border-right: none; border-bottom: 1px solid var(--rule); }
+  .case, .case:nth-child(even) { grid-template-columns: 1fr; }
+  .case:nth-child(even) .case-media { order: 0; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
 }
 
@@ -408,6 +445,8 @@ h1 {
 
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .more li { grid-template-columns: 1fr; gap: .35rem; }
+  .more li { grid-template-columns: 88px minmax(0, 1fr); gap: .5rem .85rem; }
+  .more-thumb { width: 88px; height: 62px; }
+  .more-metric { grid-column: 1 / -1; }
   .contact-list li { grid-template-columns: 1fr; gap: .1rem; }
 }
