@@ -52,6 +52,57 @@
     }
   });
 
+  /* ------------------------------------------------------------ nav state */
+
+  /* Mark the section currently in view. Purely additive: without JS, or
+     without IntersectionObserver, the nav is still a working set of links. */
+  if ("IntersectionObserver" in window) {
+    var navLinks = {};
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.nav nav a[href^="#"]'),
+      function (link) {
+        navLinks[link.getAttribute("href").slice(1)] = link;
+      }
+    );
+
+    var visible = {};
+
+    function markCurrent() {
+      // The topmost visible section wins, so scrolling past a short section
+      // does not leave two links lit at once.
+      var current = null;
+      Object.keys(navLinks).forEach(function (id) {
+        var section = document.getElementById(id);
+        if (!section || !visible[id]) return;
+        if (!current || section.offsetTop < document.getElementById(current).offsetTop) {
+          current = id;
+        }
+      });
+
+      Object.keys(navLinks).forEach(function (id) {
+        if (id === current) navLinks[id].setAttribute("aria-current", "true");
+        else navLinks[id].removeAttribute("aria-current");
+      });
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.target.id] = entry.isIntersecting;
+        });
+        markCurrent();
+      },
+      // Ignore the strip under the sticky header, and require a section to
+      // occupy the upper part of the viewport before it counts.
+      { rootMargin: "-25% 0px -60% 0px" }
+    );
+
+    Object.keys(navLinks).forEach(function (id) {
+      var section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  }
+
   /* ------------------------------------------------------------ year */
 
   var year = document.getElementById("year");
