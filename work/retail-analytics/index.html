@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retail Analytics in SQL — Amos Odhiambo</title>
+<meta name="description" content="Cohort retention, RFM and basket affinity over 1,067,371 real transaction lines — where a flat retention curve revealed a wholesale business, not consumer e-commerce.">
+
+<meta property="og:title" content="Retail Analytics in SQL — Amos Odhiambo">
+<meta property="og:description" content="Cohort retention, RFM and basket affinity over 1,067,371 real transaction lines — where a flat retention curve revealed a wholesale business, not consumer e-commerce.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/retail-analytics/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/retail.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/retail-analytics/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Retail Analytics in SQL",
+  "description": "Cohort retention, RFM and basket affinity over 1,067,371 real transaction lines \u2014 where a flat retention curve revealed a wholesale business, not consumer e-commerce.",
+  "url": "https://manookello.github.io/work/retail-analytics/",
+  "image": "https://manookello.github.io/assets/banners/retail.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/retail-analytics-sql"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Wholesale retail · SQL · 1.07M transaction lines</p>
+    <h1>Retail Analytics in SQL</h1>
+    <p class="study-finding">A retention curve that refuses to decay said this was a <strong>wholesale business</strong>, not the consumer e-commerce everyone assumed.</p>
+
+    <dl class="study-meta">
+      <div><dt>Dataset</dt><dd>Online Retail II — 1,067,371 lines, 53,628 orders, 43 countries</dd></div>
+      <div><dt>Stack</dt><dd>SQL · DuckDB · pandas · Streamlit</dd></div>
+      <div><dt>Tests</dt><dd>25, against a hand-built nine-row frame</dd></div>
+      <div><dt>Deliverable</dt><dd>The SQL itself — five reviewable files</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/retail.webp" width="1440" height="288" alt="Cohort retention heatmap across 25 monthly cohorts.">
+    </figure>
+
+    <section>
+      <p>The same logic expressed as a chain of pandas <code>groupby</code> calls is unreviewable. Window functions, CTEs and self-joins in a file someone can read and argue with are the point: the SQL is the deliverable, and the Python around it just runs the queries and draws the charts.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>&quot;Revenue&quot; moves by £3.4M depending on what you count</h2>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Basis</th><th>Revenue</th></tr></thead>
+<tbody>
+<tr><td>All lines as delivered</td><td class="num">£19.29M</td></tr>
+<tr class="best"><td>Excluding cancellations</td><td class="num">£20.81M</td></tr>
+<tr><td>Excluding cancellations and non-product lines</td><td class="num">£20.11M</td></tr>
+<tr><td>Attributable to an identified customer</td><td class="num">£17.43M</td></tr>
+</tbody></table></div>
+<p>A <strong>17% spread</strong> between the largest and smallest defensible figure — and note it is not monotonic: removing cancellations <em>raises</em> revenue, because cancellation lines carry negative values.</p>
+<p>This is why the audit runs first. Any analysis quoting "revenue" without stating its basis cannot be compared with another one, and the difference here is larger than most of the effects anyone would be trying to measure.</p>
+<p><strong>Nearly a quarter of transactions have no customer ID.</strong> They are real revenue, so they stay in the totals — but they cannot appear in a cohort or an RFM score. Silently including them would inflate the customer base; silently dropping them would understate revenue by £2.6M. The staging view flags them and each downstream query states its basis.</p>
+      </section>
+      <section class="finding">
+        <h2>Retention does not decay, which says what kind of business this is</h2>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Months since first purchase</th><th>1</th><th>3</th><th>6</th><th>12</th></tr></thead>
+<tbody><tr><td>Customers ordering</td><td class="num">23.0%</td><td class="num">24.6%</td><td class="num">21.9%</td><td class="num">22.4%</td></tr></tbody>
+</table></div>
+<p>A consumer e-commerce retention curve decays — steeply at first, then flattening. This one is <strong>flat from month 1 onward</strong>, and month 12 retention is indistinguishable from month 1.</p>
+<p>That is not a healthy consumer business; it is a wholesale one. The customers who come back are trade buyers restocking on a cycle, and the median gap between orders is <strong>25 days</strong> — roughly monthly reordering. The 72.4% repeat rate points the same way.</p>
+<p>The practical consequence: "reactivate lapsed customers" campaigns aimed at the 77% who never return are probably aimed at one-off retail buyers who were never going to reorder. The budget belongs on the trade accounts instead.</p>
+<figure><img src="../../assets/case/retail-analytics-retention_curve.webp" width="900" height="562" loading="lazy" alt="Retention curve averaged across cohorts, flat from month one onwards."><figcaption>Averaged retention. The absence of decay is the finding.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Revenue is far more concentrated than 80/20</h2>
+<p>The Pareto rule would predict 80% of revenue from the top 20%. Here the <strong>top 10% alone account for 63.9%</strong>, and the top 20% for 77.2%. Losing a handful of accounts is a materially different risk to losing a broad slice of the base.</p>
+<p>The RFM segmentation says the same thing from the other direction. The actionable row is <strong>"At risk — high value": 208 customers, 3.6% of the base, who have spent an average of £4,409 each and have stopped ordering.</strong> Together with the wider at-risk group they represent £1.57M of historical revenue.</p>
+<p>That is a list short enough for a human to phone, which is worth more than any broad campaign to the 1,632 dormant customers who averaged 1.3 orders and £433 in total.</p>
+<figure><img src="../../assets/case/retail-analytics-rfm_segments.webp" width="900" height="550" loading="lazy" alt="RFM segments plotted as share of customers against share of revenue."><figcaption>Share of customers against share of revenue, by RFM segment.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>The fourth-biggest product sold nothing at all</h2>
+<p>A "top products" query ranking by revenue alone puts PAPER CRAFT, LITTLE BIRDIE fourth in the catalogue at £168,470. The product has exactly <strong>two lines in the entire dataset</strong>:</p>
+<p><code>581483 · +80,995 units · 2011-12-09 09:15</code><br>
+<code>C581484 · −80,995 units · 2011-12-09 09:27</code></p>
+<p>One order of 80,995 units, cancelled by the same customer <strong>twelve minutes later</strong>. Net quantity: zero. Return rate 100%.</p>
+<p>This is why the product query carries the return rate in the same row rather than in a separate report nobody joins back — and why the staging view keeps cancellations instead of discarding them.</p>
+      </section>
+      <section class="finding">
+        <h2>Two markets, not forty-three</h2>
+<p>The UK is 87.1% of revenue. The <strong>Netherlands generates 3.3% from 22 customers</strong> at nearly 6× the UK average order value (£2,546 against £438); Australia 1.0% from 15 customers at £1,893.</p>
+<p>Those are wholesale accounts, not a consumer market — and 22 named accounts is an account-management problem, not a marketing one.</p>
+<p>Basket affinity is scored by lift rather than co-occurrence for the same reason: ranking pairs by raw co-occurrence just ranks the bestsellers against each other, since popular items appear in most baskets by definition. Lift asks whether a pair appears more often than independence predicts — and at ~176× the herb markers are effectively a set, which makes the recommendation concrete: sell them as a set rather than cross-selling one at a time.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>One retailer, two years, one currency. Nothing here generalises to another business; the transferable part is the method and the SQL.</li>
+        <li>No cost data, so "revenue" is never "profit" and lifetime value is gross.</li>
+        <li>Cohorts are defined by first purchase in this window, so customers who first bought before December 2009 are mislabelled as new — inflating the earliest cohort and depressing its apparent retention.</li>
+        <li>The flat curve's tail rests on fewer cohorts: month 12 is averaged over 13 cohorts, month 1 over 24. The survivor filter prevents the worst of it; the tail is still less certain than the head.</li>
+        <li>Guest checkouts are 22.8% of lines and invisible to every customer-level analysis. If those buyers behave differently — and one-off gift buyers plausibly do — the retention and segment figures describe the identified population only.</li>
+        <li>Basket affinity is association, not causation. Herb markers co-occur because they are a set; nothing here shows that promoting one causes purchases of another.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/retail-analytics-sql" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../demand-forecasting/"><span class="dir">Previous</span>Demand Forecasting</a>
+      <a href="../semantic-search/" style="text-align:right"><span class="dir">Next</span>Semantic Search &amp; RAG</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

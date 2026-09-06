@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FashionMNIST Residual CNN — Amos Odhiambo</title>
+<meta name="description" content="A 218K-parameter residual CNN trained on four CPU cores, with Grad-CAM, selective prediction, and exports verified numerically.">
+
+<meta property="og:title" content="FashionMNIST Residual CNN — Amos Odhiambo">
+<meta property="og:description" content="A 218K-parameter residual CNN trained on four CPU cores, with Grad-CAM, selective prediction, and exports verified numerically.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/vision-classifier/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/vision.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/vision-classifier/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "FashionMNIST Residual CNN",
+  "description": "A 218K-parameter residual CNN trained on four CPU cores, with Grad-CAM, selective prediction, and exports verified numerically.",
+  "url": "https://manookello.github.io/work/vision-classifier/",
+  "image": "https://manookello.github.io/assets/banners/vision.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/pytorch-vision-classifier"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Deep learning · CPU budget · deployment</p>
+    <h1>FashionMNIST Residual CNN</h1>
+    <p class="study-finding">Deferring the least confident <strong>10%</strong> of images lifts accuracy from 91.8% to <strong>96.1%</strong> — for the cost of a threshold.</p>
+
+    <dl class="study-meta">
+      <div><dt>Constraint</dt><dd>Four CPU cores. No GPU, no pretrained backbone.</dd></div>
+      <div><dt>Stack</dt><dd>PyTorch · TorchScript · ONNX · Grad-CAM</dd></div>
+      <div><dt>Tests</dt><dd>53, no dataset or checkpoint required</dd></div>
+      <div><dt>Result</dt><dd>91.83% test accuracy · 218,362 parameters · 33 min training</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/vision.webp" width="1440" height="288" alt="Training and validation accuracy across twelve epochs.">
+    </figure>
+
+    <section>
+      <p>The constraint is the point. It forced every architectural decision to be justified by its cost, and it is a fair proxy for the edge and CPU-only environments where small vision models actually get deployed.</p>
+      <p>Validation accuracy was still climbing at epoch 12, so 91.83% is a floor rather than a ceiling — the run was stopped by the compute budget, not by convergence.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>The architecture was chosen by benchmark, not by taste</h2>
+<p>Three decisions account for most of the 218K parameters and ~13M multiply-accumulates per image.</p>
+<p><strong>The stem runs at full resolution but only 16 channels</strong>, capturing fine detail before any downsampling at almost no cost. <strong>Both early stages downsample</strong> — convolution cost scales with spatial area, so moving to 14×14 and then 7×7 early is worth roughly a <strong>3× speed-up</strong> over holding 28×28 through the first stage, for a fraction of a point of accuracy. This was the single change that made the project feasible: the first architecture I benchmarked would have needed <strong>2.3 hours</strong> to train.</p>
+<p><strong>Global average pooling instead of a flattened dense head.</strong> A <code>Flatten → Linear</code> head on a 7×7×96 map would add ~470K parameters on its own — more than twice the entire network — with no accuracy gain at this scale.</p>
+<p>The training recipe matters as much: one-cycle LR reaches competitive accuracy in ~12 epochs instead of the 40+ a step schedule needs, and augmentation is vectorised over batches in pure torch ops rather than per-image PIL transforms. On a CPU-only box the standard <code>transforms</code> pipeline is the bottleneck, not the model.</p>
+      </section>
+      <section class="finding">
+        <h2>Aggregate accuracy hides where the errors live</h2>
+<p>Errors are not spread evenly. Four of the five most common confusions involve a single class: Shirt → T-shirt/top (113), T-shirt/top → Shirt (97), Shirt → Coat (75), Coat → Shirt (49).</p>
+<p>Per-class F1 ranges from <strong>0.987 (Trouser)</strong> down to <strong>0.752 (Shirt)</strong>. Every class above 0.95 is footwear or a bag; every class below 0.90 is an upper-body garment.</p>
+<p>That is not a model defect so much as a labelling one: at 28×28 grayscale, a shirt, a t-shirt, a pullover and a coat differ mainly by sleeve length and collar detail, and those are a handful of pixels. Which is why per-class F1 and the confusion matrix are reported first.</p>
+<figure><img src="../../assets/case/vision-classifier-confusion_matrix.webp" width="900" height="794" loading="lazy" alt="Row-normalised confusion matrix, with errors concentrated among upper-body garments."><figcaption>Row-normalised confusion matrix. Nearly all error is in one cluster of classes.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Knowing when not to answer</h2>
+<p>Mean confidence is 0.902 on correct predictions and 0.612 on incorrect ones. The model's uncertainty is informative, so it can abstain on its weakest inputs and hand them to a human.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Coverage</th><th>Accuracy on answered</th><th>Confidence threshold</th></tr></thead>
+<tbody>
+<tr><td>100%</td><td class="num">91.83%</td><td class="num">—</td></tr>
+<tr><td>95%</td><td class="num">94.14%</td><td class="num">0.516</td></tr>
+<tr class="best"><td>90%</td><td class="num">96.06%</td><td class="num">0.623</td></tr>
+<tr><td>80%</td><td class="num">98.30%</td><td class="num">0.793</td></tr>
+</tbody></table></div>
+<p>Deferring the least confident 10% of images lifts accuracy from 91.8% to <strong>96.1%</strong>. For a sorting or triage application that trade is usually worth far more than another point of raw accuracy — and it costs nothing but a threshold.</p>
+<figure><img src="../../assets/case/vision-classifier-risk_coverage.webp" width="900" height="643" loading="lazy" alt="Risk-coverage curve showing accuracy rising as coverage falls."><figcaption>Risk-coverage. Accuracy against the fraction of images the model chooses to answer.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Grad-CAM: right for the right reasons?</h2>
+<p>Grad-CAM weights the final 7×7 feature maps by the gradient of the predicted class score, showing which regions supplied the evidence. The overlays confirm the model attends to garment silhouette — sleeve openings, the gap between trouser legs, the shaft of a boot — rather than to background or a corner artefact.</p>
+<p>This is also why the last stage keeps 7×7 resolution instead of downsampling to 4×4. A 4×4 heatmap upsampled to 28×28 is too coarse to tell you anything.</p>
+<figure><img src="../../assets/figures/vision-gradcam.webp" width="420" height="384" loading="lazy" alt="Grad-CAM overlays on FashionMNIST garments, highlighting silhouette rather than background."><figcaption>Grad-CAM overlays, one example per class.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Verification caught two export bugs</h2>
+<p>Serving loads the TorchScript graph, not the training checkpoint. A checkpoint is a pickle that needs the model class and a compatible PyTorch version; the scripted graph carries its own definition, so the serving environment never imports training code.</p>
+<p>Both exports are verified numerically rather than assumed correct — and that caught two real bugs.</p>
+<p><strong>A statically baked-in batch size.</strong> PyTorch 2.5+ routes <code>torch.onnx.export</code> through the dynamo exporter, which <em>silently ignores</em> the older <code>dynamic_axes</code> argument. The export succeeded and then failed at inference on any batch size other than the example's. The fix is <code>dynamic_shapes</code> keyed by the <code>forward</code> argument name. The verification deliberately uses a <strong>different batch size</strong> from the export, which is the only reason this surfaced.</p>
+<p><strong>A missing sidecar.</strong> The dynamo exporter writes weights to a companion <code>.onnx.data</code> file, leaving a 43 KB <code>.onnx</code> that loads fine and then fails with missing initialisers if copied alone. The exporter now folds the weights back in.</p>
+<p>Max absolute difference against eager: <strong>1.4e-06</strong> for TorchScript, <strong>1.9e-06</strong> for ONNX.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>FashionMNIST is a benchmark, not a product. 28×28 grayscale, perfectly centred, one object per image, ten balanced classes — real catalogue images have none of those properties.</li>
+        <li>91.8% is below the published state of the art (~96% with heavy augmentation, wide-ResNets and hundreds of GPU-epochs). The gap is compute, not method, and closing it was explicitly out of scope.</li>
+        <li>No test-time augmentation or ensembling. Both would add roughly a point for a multiple of the inference cost, undercutting the small-and-fast premise.</li>
+        <li>The confidence analysis uses raw softmax. It ranks correctness well, but the reliability curve shows the model is over-confident in absolute terms; temperature scaling would fix the calibration without changing the ranking.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/pytorch-vision-classifier" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../customer-insights/"><span class="dir">Previous</span>Customer Insights: Term Deposit Campaign</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

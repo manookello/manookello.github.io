@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demand Forecasting — Amos Odhiambo</title>
+<meta name="description" content="Daily electricity demand across 25 rolling origins. A forecasting method from 2000 beat gradient boosting while fitting 590× faster.">
+
+<meta property="og:title" content="Demand Forecasting — Amos Odhiambo">
+<meta property="og:description" content="Daily electricity demand across 25 rolling origins. A forecasting method from 2000 beat gradient boosting while fitting 590× faster.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/demand-forecasting/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/forecast.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/demand-forecasting/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Demand Forecasting",
+  "description": "Daily electricity demand across 25 rolling origins. A forecasting method from 2000 beat gradient boosting while fitting 590\u00d7 faster.",
+  "url": "https://manookello.github.io/work/demand-forecasting/",
+  "image": "https://manookello.github.io/assets/banners/forecast.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/demand-forecasting"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Energy · time series · backtesting</p>
+    <h1>Demand Forecasting</h1>
+    <p class="study-finding">A forecasting method from 2000 beat gradient boosting — while fitting <strong>590× faster</strong>.</p>
+
+    <dl class="study-meta">
+      <div><dt>Series</dt><dd>UCI household power — 2,075,259 readings to 1,440 daily observations</dd></div>
+      <div><dt>Stack</dt><dd>statsmodels · scikit-learn · conformal prediction</dd></div>
+      <div><dt>Tests</dt><dd>53, fully offline</dd></div>
+      <div><dt>Backtest</dt><dd>25 rolling origins · 8 models · 5,448 scored predictions</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/forecast.webp" width="1440" height="288" alt="MASE across 25 rolling origins for five forecasting models.">
+    </figure>
+
+    <section>
+      <p>Forecasts have to be evaluated the way they will be used: refitted at successive origins, scored against baselines that are hard to beat, with prediction intervals whose coverage is measured rather than asserted.</p>
+      <p>Eight models were refitted at each of 25 expanding-window origins, forecasting 28 days every time. Fitting once on everything and slicing the predictions is the standard way to leak the future into a backtest.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>A single holdout would have picked a different model</h2>
+<p>The same eight models, scored once on the final 28 days instead of across 25 folds:</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th></th><th>Backtest (25 folds)</th><th>Final holdout (once)</th></tr></thead>
+<tbody>
+<tr class="best"><td>1st</td><td>Theta (0.738)</td><td>SARIMA (0.686)</td></tr>
+<tr><td>2nd</td><td>Holt-Winters</td><td>Seasonal mean</td></tr>
+<tr><td>3rd</td><td>Gradient boosting</td><td>Theta (0.810)</td></tr>
+<tr><td>Last</td><td>Drift (0.986)</td><td>Seasonal naive (1.167)</td></tr>
+</tbody></table></div>
+<p>Seasonal naive comes <strong>last</strong> on the holdout and <strong>sixth of eight</strong> in the backtest. SARIMA comes <strong>first</strong> on the holdout and fourth across folds.</p>
+<p>Pick your model from one split and you are choosing on the strength of one arbitrary month. This project exists to show the size of that difference, which is why the holdout is reported <em>alongside</em> the backtest and not instead of it.</p>
+      </section>
+      <section class="finding">
+        <h2>The best model on average wins the fewest folds</h2>
+<p>Gradient boosting wins <strong>8 of 25 folds</strong> — more than any other model — and still finishes third overall. Theta wins only 4 and finishes first.</p>
+<p>Gradient boosting is high-variance: when it is right it is clearly right, and when it is wrong it is wrong by enough to lose the average. That is a genuinely different property from "worse", and a mean would have hidden it entirely.</p>
+<p>For an operational forecast the consistent model is usually the right choice; for an ensemble, the volatile one may still earn its place.</p>
+<figure><img src="../../assets/case/demand-forecasting-fold_stability.webp" width="900" height="450" loading="lazy" alt="MASE per fold for the leading models, showing gradient boosting swinging widest."><figcaption>MASE per fold. The spread matters as much as the mean.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>The Gaussian interval under-covers, and it gets worse with horizon</h2>
+<p>Both interval methods are calibrated only on folds strictly earlier than the one being scored, so this coverage is genuinely out-of-sample.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Method</th><th>Nominal</th><th>Empirical</th><th>Mean width</th></tr></thead>
+<tbody>
+<tr><td>Gaussian (±1.96σ)</td><td class="num">95%</td><td class="num">93.3%</td><td class="num">1.119</td></tr>
+<tr class="best"><td>Split conformal</td><td class="num">95%</td><td class="num">96.1%</td><td class="num">1.373</td></tr>
+</tbody></table></div>
+<p>Per horizon band the failure is not uniform. The Gaussian interval degrades to <strong>87.9% at days 22–28</strong> — it claims 95% and delivers less than 88%, failing exactly where planning decisions are hardest to reverse.</p>
+<p>The cause is visible in the residuals: excess kurtosis <strong>+1.57</strong>, Anderson–Darling statistic 2.59 against a 5% critical value of 0.78. The errors have fat tails, so ±1.96σ is too narrow for the extremes it is supposed to cover. Split conformal takes the empirical quantile of past absolute errors and assumes nothing about their distribution — at the cost of being <strong>23% wider</strong>. That is the trade, stated in numbers rather than asserted.</p>
+<figure><img src="../../assets/case/demand-forecasting-interval_coverage.webp" width="900" height="346" loading="lazy" alt="Interval coverage and width by horizon band for both methods."><figcaption>Coverage and width by horizon band.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Annual seasonality is stronger than weekly, and almost nothing models it</h2>
+<p>STL puts weekly seasonal strength at 0.297 and <strong>annual at 0.579</strong>. Electric heating makes winter demand far higher than summer, and that annual cycle explains almost twice as much variance as the weekly one.</p>
+<p>Yet every classical model here is configured with a weekly period: a seasonal period of 365 is computationally impractical for SARIMA and Holt-Winters, which is a real limitation of those methods rather than an oversight. The gradient boosting model is the only one that can see the annual cycle at all, through cyclical day-of-year features — and it is the model that wins the most individual folds. Suggestive rather than conclusive, but it points at where the remaining accuracy is.</p>
+      </section>
+      <section class="finding">
+        <h2>Gap handling that does not fabricate quietly</h2>
+<p>22 of 1,440 days were missing across 7 runs, the longest 6 days. The obvious call —</p>
+<p><code>series.interpolate(limit=3)</code></p>
+<p>— fills the first three days of a six-day outage and leaves the rest. It invents values <em>and</em> leaves a hole.</p>
+<p>Instead each run is handled as a unit: short runs interpolated, long runs carried forward from the same weekday a week earlier, and <strong>every filled day flagged</strong>. Imputed days stay in the training history so models see a contiguous series, but the 152 predictions whose <em>target</em> was imputed are excluded from scoring. Being graded against a value you invented measures nothing.</p>
+<p>One more framing correction worth recording: every model here scores MASE below 1, including the naive baselines — because "MASE &lt; 1 beats naive" is only exact for one-step forecasts. These run 1–28 days ahead against a one-step scale. The column that answers "is this worth having?" is <strong>relative MASE</strong>, each model divided by seasonal naive in the same backtest. Both are reported.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>One household, not a grid. A single meter is far noisier than aggregate demand; utility load forecasting on the same methods would show much lower errors, and the ranking could differ.</li>
+        <li>No weather covariates. Temperature is the dominant driver of electricity demand, so much of what looks like annual seasonality is really temperature arriving on schedule.</li>
+        <li>The annual cycle is under-modelled. Fourier terms in a SARIMAX, or a TBATS-style model, would address it directly; neither is here.</li>
+        <li>Hyperparameters are fixed, not searched. Searching inside each fold would be more accurate and much slower; searching once across all folds would leak.</li>
+        <li>Conformal's guarantee assumes exchangeability, which a time series with drift violates. It is well-calibrated here empirically — that is measurement, not theory.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/demand-forecasting" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../churn-mlops/"><span class="dir">Previous</span>Customer Churn MLOps Platform</a>
+      <a href="../retail-analytics/" style="text-align:right"><span class="dir">Next</span>Retail Analytics in SQL</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

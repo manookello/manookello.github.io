@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Churn MLOps Platform — Amos Odhiambo</title>
+<meta name="description" content="An end-to-end churn system where the threshold comes from retention economics, not from 0.5 — worth +19.7% campaign profit on the same model.">
+
+<meta property="og:title" content="Customer Churn MLOps Platform — Amos Odhiambo">
+<meta property="og:description" content="An end-to-end churn system where the threshold comes from retention economics, not from 0.5 — worth +19.7% campaign profit on the same model.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/churn-mlops/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/churn.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/churn-mlops/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Customer Churn MLOps Platform",
+  "description": "An end-to-end churn system where the threshold comes from retention economics, not from 0.5 \u2014 worth +19.7% campaign profit on the same model.",
+  "url": "https://manookello.github.io/work/churn-mlops/",
+  "image": "https://manookello.github.io/assets/banners/churn.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/mlops-churn-platform"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Telecoms · retention · MLOps</p>
+    <h1>Customer Churn MLOps Platform</h1>
+    <p class="study-finding">A threshold chosen from retention economics rather than the default 0.5 was worth <strong>+19.7% campaign profit</strong> — on exactly the same model.</p>
+
+    <dl class="study-meta">
+      <div><dt>Dataset</dt><dd>IBM Telco churn — 7,043 subscribers, 19 features, 26.5% base rate</dd></div>
+      <div><dt>Stack</dt><dd>scikit-learn · XGBoost · MLflow · FastAPI · Docker</dd></div>
+      <div><dt>Tests</dt><dd>52, fully offline</dd></div>
+      <div><dt>Test ROC AUC</dt><dd>0.844 · PR AUC 0.632 · Brier 0.138</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/churn.webp" width="1440" height="288" alt="Lift by risk decile: the riskiest decile churns at 2.83 times the base rate.">
+    </figure>
+
+    <section>
+      <p>Most churn projects end at a notebook with an AUC in it. This one is about the other 90%: a reproducible training pipeline, experiment tracking with a working model registry, a validated inference API, a container image, CI that gates every push, and drift monitoring that stays quiet until something actually moves.</p>
+      <p>Accuracy is deliberately not the headline. Predicting that nobody churns scores 73.5% on this dataset while being worth exactly nothing.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>The simplest model won, and that is the finding</h2>
+<p>Four candidates were cross-validated on the training split alone. Logistic regression came first.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Model</th><th>CV ROC AUC</th><th>Std</th></tr></thead>
+<tbody>
+<tr class="best"><td>Logistic regression</td><td class="num">0.8502</td><td class="num">±0.0129</td></tr>
+<tr><td>Random forest</td><td class="num">0.8460</td><td class="num">±0.0118</td></tr>
+<tr><td>Hist gradient boosting</td><td class="num">0.8387</td><td class="num">±0.0126</td></tr>
+<tr><td>XGBoost</td><td class="num">0.8344</td><td class="num">±0.0114</td></tr>
+</tbody></table></div>
+<p>With roughly 4,200 training rows, 16 of 19 features categorical, and a mostly additive signal — short tenure, month-to-month, fibre, electronic check — there is little interaction structure for a tree ensemble to find that one-hot encoding plus a linear boundary does not already capture. The extra capacity buys variance instead of signal.</p>
+<p>Shipping the boosted model anyway would have meant a slower, less interpretable, <em>worse</em> system. The pipeline picks the champion on cross-validated score, so this conclusion is reproducible rather than asserted.</p>
+<figure><img src="../../assets/case/churn-mlops-model_comparison.webp" width="900" height="514" loading="lazy" alt="Cross-validated ROC AUC for four candidate models, with logistic regression highest."><figcaption>Cross-validated ROC AUC across four candidates. The error bars overlap, which is itself worth knowing.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>The threshold is a business decision, not 0.5</h2>
+<p>A default 0.5 cut-off silently assumes a false positive and a false negative cost the same. They do not. Given a $20 retention offer, a $200 customer value and a 35% offer-acceptance rate, expected campaign profit is:</p>
+<p><code>profit = TP × ($200 × 0.35) − (TP + FP) × $20</code></p>
+<p>Maximising that over the validation split gives <strong>0.27</strong>, not 0.5 — worth <strong>+$1,470, or +19.7%</strong>, on 1,409 held-out customers. The economics live in the config file, so changing the offer cost re-derives the threshold.</p>
+<p>The threshold is tuned on <strong>validation</strong> and the test split is scored exactly once. Tuning it on test is the most common way these numbers get quietly inflated.</p>
+<figure><img src="../../assets/figures/churn-profit.webp" width="1000" height="714" loading="lazy" alt="Expected campaign profit against the decision threshold, peaking at 0.27."><figcaption>Expected profit against threshold. The optimum sits at 0.27; the naive 0.5 leaves money on the table.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Calibrated probabilities, not class re-weighting</h2>
+<p>The usual reflex for a 26.5% base rate is <code>class_weight="balanced"</code>. That distorts the output into a score which no longer means "probability of churn" — which breaks the profit arithmetic above.</p>
+<p>Instead the champion is refit on train and isotonically calibrated on the untouched validation split. The resulting Brier score is <strong>0.138</strong> and the calibration curve tracks the diagonal, so a predicted 0.30 really does mean roughly 30% of those customers churn. That is what makes the expected-value calculation valid rather than decorative.</p>
+<figure><img src="../../assets/case/churn-mlops-calibration.webp" width="900" height="643" loading="lazy" alt="Calibration curve tracking the diagonal closely after isotonic calibration."><figcaption>Calibration after isotonic regression on the validation split.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>A pickled model is not a portable artefact</h2>
+<p>CI caught this on its first real run. The requirements said <code>scikit-learn&gt;=1.3</code>, CI resolved 1.9.0, and the committed artefact — pickled on 1.7.0 — unpickled with nothing but a warning and then <strong>failed deep inside <code>CalibratedClassifierCV.predict_proba</code></strong>, with a traceback pointing at scikit-learn internals rather than at the actual cause.</p>
+<p>Two changes, because both halves were wrong. The dependency is now pinned to <code>&gt;=1.7,&lt;1.8</code> — this repository is an application that ships a serialised model, not a library, so the serving environment has to be pinned rather than lower-bounded. And the bundle records the versions that trained it, comparing them on load and raising one legible sentence naming the mismatch.</p>
+<p>The same class of bug appeared in the other direction: the pipeline's <code>dtype == object</code> check for the target silently stopped working on <strong>pandas 3</strong>, which reads text columns as <code>str</code>. Both regressions now have tests that reproduce the newer library's behaviour on the older one.</p>
+      </section>
+      <section class="finding">
+        <h2>Drift alerts a team will not learn to ignore</h2>
+<p>The detector compares a reference window against a current one using PSI for effect size plus KS and chi-square tests for significance.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Window</th><th>Status</th><th>Features flagged</th><th>Prediction PSI</th></tr></thead>
+<tbody>
+<tr><td>Stable — resampled from the same distribution</td><td>OK</td><td class="num">0 / 19</td><td class="num">0.005</td></tr>
+<tr class="best"><td>Shifted — 18% price rise, mix change, younger tenure</td><td>ALERT</td><td class="num">5 / 19</td><td class="num">0.557</td></tr>
+</tbody></table></div>
+<p>The first row is the one that took work. Testing 19 features at α = 0.05 produces roughly one spurious flag on every clean window — and the first version of this detector did exactly that, flagging <code>OnlineBackup</code> at p = 0.034 while its PSI was 0.004, meaning no drift at all.</p>
+<p>The fix was a Bonferroni correction on the p-value threshold, and treating <strong>PSI as the primary signal</strong>. A hypothesis test only reports that a shift is <em>detectable</em>, and at production sample sizes everything is detectable. A monitor that cries wolf weekly gets muted, and then it is worth less than no monitor.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>The dataset is a static snapshot with no real timestamps, so the drift experiment injects a <em>simulated</em> shift. It demonstrates that the detector works; it is not evidence of drift in the wild.</li>
+        <li>The retention economics are illustrative. The $20 / $200 / 35% figures are plausible placeholders — the transferable part is the machinery that turns them into a threshold.</li>
+        <li>ROC AUC ≈ 0.84 is near the ceiling for these features. Published results on this dataset cluster in 0.83–0.86; meaningful gains need usage and support-ticket history, not more tuning.</li>
+        <li>No live retraining trigger. The drift report is generated on demand; wiring it to a scheduler that retrains on ALERT is the natural next step.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/mlops-churn-platform" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <span></span>
+      <a href="../demand-forecasting/" style="text-align:right"><span class="dir">Next</span>Demand Forecasting</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

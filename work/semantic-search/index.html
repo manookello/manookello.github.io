@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantic Search &amp; RAG — Amos Odhiambo</title>
+<meta name="description" content="A retrieval service measured rather than demonstrated — where a from-scratch BM25 beat the embedding model on every metric.">
+
+<meta property="og:title" content="Semantic Search &amp; RAG — Amos Odhiambo">
+<meta property="og:description" content="A retrieval service measured rather than demonstrated — where a from-scratch BM25 beat the embedding model on every metric.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/semantic-search/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/rag.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/semantic-search/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Semantic Search & RAG",
+  "description": "A retrieval service measured rather than demonstrated \u2014 where a from-scratch BM25 beat the embedding model on every metric.",
+  "url": "https://manookello.github.io/work/semantic-search/",
+  "image": "https://manookello.github.io/assets/banners/rag.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/semantic-search-rag"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Retrieval · RAG · evaluation</p>
+    <h1>Semantic Search &amp; RAG</h1>
+    <p class="study-finding">A from-scratch keyword index beat the neural retriever on <strong>every metric</strong>, and ran 9× faster.</p>
+
+    <dl class="study-meta">
+      <div><dt>Corpus</dt><dd>2,067 Wikipedia paragraphs · 10,570 labelled questions</dd></div>
+      <div><dt>Stack</dt><dd>sentence-transformers · BM25 from scratch · FastAPI · Claude API</dd></div>
+      <div><dt>Tests</dt><dd>72, fully offline</dd></div>
+      <div><dt>Evaluation</dt><dd>2,000 sampled queries · Recall@k, MRR, nDCG</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/rag.webp" width="1440" height="288" alt="Recall@1, MRR and nDCG@10 for BM25, dense and hybrid retrieval.">
+    </figure>
+
+    <section>
+      <p>Most RAG projects show three cherry-picked queries and declare success. This one runs on a corpus where every question has a labelled correct document, so retrieval quality is a number rather than an impression.</p>
+      <p>That measurement immediately produced a result worth reporting: the embedding model loses.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>BM25 beat the embedding model, decisively</h2>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>System</th><th>Recall@1</th><th>Recall@10</th><th>MRR</th><th>Miss rate</th><th>ms/query</th></tr></thead>
+<tbody>
+<tr class="best"><td>BM25 (lexical)</td><td class="num">0.768</td><td class="num">0.942</td><td class="num">0.832</td><td class="num">5.9%</td><td class="num">1.3</td></tr>
+<tr><td>Dense (MiniLM)</td><td class="num">0.643</td><td class="num">0.912</td><td class="num">0.739</td><td class="num">8.9%</td><td class="num">12.0</td></tr>
+<tr><td>Hybrid (RRF)</td><td class="num">0.738</td><td class="num">0.960</td><td class="num">0.823</td><td class="num">4.1%</td><td class="num">10.0</td></tr>
+</tbody></table></div>
+<p><code>all-MiniLM-L6-v2</code> lost on every metric and was <strong>9× slower</strong>. This is not a bug and it is not unusual: SQuAD questions are written by annotators <em>looking at the paragraph</em>, so they reuse its vocabulary — precisely the condition under which exact lexical matching excels.</p>
+<p>The wider point: <strong>a dense retriever is not automatically an upgrade.</strong> Without a labelled set you cannot know which way it goes on <em>your</em> corpus, and the default assumption that embeddings beat keyword search is how teams ship a slower, worse, more expensive system and never find out.</p>
+<figure><img src="../../assets/case/semantic-search-recall_curve.webp" width="900" height="643" loading="lazy" alt="Recall at k for BM25, dense and hybrid retrieval."><figcaption>Recall@k. Hybrid overtakes BM25 past rank 1.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Hybrid fusion wins where RAG actually cares</h2>
+<p>Hybrid loses to BM25 at Recall@1 (0.738 vs 0.768) but wins everywhere past rank 1 — and cuts the <strong>miss rate from 5.9% to 4.1%</strong>, a 30% reduction in questions where the answer was never retrieved at all.</p>
+<p>For RAG that trade is clearly right. The generator is handed the top <em>k</em> passages, not just the first one, so what matters is whether the answer is in the context window at all. A document the generator never sees cannot be used, however well-ranked the alternatives were.</p>
+<p>Fusion uses Reciprocal Rank Fusion, which discards the scores and fuses ranks. BM25 returns an unbounded sum of IDF terms; cosine similarity lives in [−1, 1]. Any attempt to normalise them onto a shared scale needs assumptions about their distributions that do not hold query to query. RRF sidesteps that entirely — and a document ranked well by <em>both</em> retrievers outranks one ranked first by only one.</p>
+<figure><img src="../../assets/case/semantic-search-rank_distribution.webp" width="900" height="540" loading="lazy" alt="Distribution of where the gold document lands for each system."><figcaption>Where the correct document actually lands, per system.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Reranking is the biggest win and by far the most expensive</h2>
+<p>A cross-encoder pass lifted Recall@1 from 0.755 to <strong>0.883 (+12.8pp)</strong> and MRR by 0.084. Nothing else in this project moved the numbers that much.</p>
+<p>It costs <strong>175× the latency</strong> — 1,744 ms per query against 10 ms, on CPU. The reason it works is the reason it is slow: a bi-encoder embeds query and passage <em>independently</em> and can never model their interaction, while a cross-encoder reads both together. That is also why it only runs over a 20-document shortlist; over 3,099 passages it would be unusable.</p>
+<p>The engineering conclusion is a two-stage architecture: cheap retrieval for recall, expensive reranking for precision, applied only to the shortlist. On a GPU that 1.7 s collapses — but the <em>shape</em> of the trade does not change.</p>
+      </section>
+      <section class="finding">
+        <h2>Retrieval succeeding is not the same as answering correctly</h2>
+<p>From the worked examples the pipeline emits:</p>
+<p><strong>Q:</strong> <em>What colour were the Broncos' uniforms in Super Bowl 50?</em><br>
+<strong>Retrieved:</strong> correct paragraph, rank 1 ✅<br>
+<strong>Extractive answer:</strong> <em>"In their only other Super Bowl win in Super Bowl XXXII, Denver wore blue jerseys…"</em><br>
+<strong>Gold answer:</strong> <em>"white"</em> ❌</p>
+<p>Retrieval did its job perfectly. The extractive reader then picked the wrong sentence — one that is about jersey colour, shares more vocabulary with the question than the correct sentence does, and answers a <em>different</em> Super Bowl.</p>
+<p>This is exactly why the retrieval metrics are reported separately from answering. Conflating them hides which half is broken.</p>
+      </section>
+      <section class="finding">
+        <h2>A cold start that a readiness probe would have missed</h2>
+<p>The first search after boot took <strong>42 seconds</strong> — the encoder loading lazily while the client waited. <code>/health</code> had already reported the service live, so a readiness probe would have routed traffic straight into it.</p>
+<p>One throwaway encode at start-up moves that cost where it belongs. First query: <strong>96 ms</strong>.</p>
+<p>Two other decisions worth stating. BM25 is written from scratch rather than imported, so the ranking stays auditable and the repo carries no extra dependency for its strongest retriever. And dense search is an exact matrix multiply: at 3,099 passages, <code>embeddings @ query</code> is faster than an ANN index <em>and</em> returns exact results. An approximate structure only starts paying for itself in the millions — building one here would be cargo-culted complexity.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>SQuAD flatters lexical retrieval. On a corpus where users phrase questions in their own words — support tickets, internal wikis — the dense retriever would very likely close the gap or win. <strong>The headline finding is about this corpus, not about embeddings in general.</strong> The transferable part is the harness that produced it.</li>
+        <li>One relevant document per query. Real search has graded, multi-document relevance; nDCG is doing less work here than its name suggests.</li>
+        <li>The embedding model is a small general-purpose one, chosen so the pipeline runs on CPU. A larger or domain-tuned encoder would score better.</li>
+        <li>No query rewriting, HyDE or multi-hop retrieval — every question here is answerable from a single paragraph, so those would have nothing to demonstrate.</li>
+        <li>Latency was measured on a contended 4-core CPU and is indicative, not a benchmark.</li>
+        <li>Answer quality is not scored. Retrieval is measured against ground truth; the answering layer is illustrated but not evaluated.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/semantic-search-rag" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../retail-analytics/"><span class="dir">Previous</span>Retail Analytics in SQL</a>
+      <a href="../credit-scorecard/" style="text-align:right"><span class="dir">Next</span>Credit Risk Scorecard</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

@@ -292,33 +292,17 @@ h1 {
 .case:nth-child(even) { grid-template-columns: minmax(0, 54%) minmax(0, 46%); }
 .case:nth-child(even) .case-media { order: 2; }
 
-/* Context photo: says what domain the project is in before you read a word.
+/* Result strip drawn from the project's own numbers. It stays dark in both
+   themes because it is a plotted surface, not page furniture - the same
+   reasoning as the white plate under the charts below.
    order:-1 keeps it on top through the alternation above. */
 .case-banner {
   grid-column: 1 / -1; order: -1;
-  position: relative; margin: 0; overflow: hidden;
+  margin: 0; overflow: hidden;
   border-bottom: 1px solid var(--rule);
+  background: #0a111f;
 }
-.case-banner img {
-  display: block; width: 100%;
-  /* Close to the exported 5:1, so object-fit has almost nothing to crop. */
-  height: clamp(132px, 19vw, 210px);
-  object-fit: cover;
-}
-/* Scrim, so the caption holds up over the brighter frames. */
-.case-banner::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top,
-    color-mix(in srgb, var(--bg) 92%, transparent) 0%,
-    color-mix(in srgb, var(--bg) 55%, transparent) 38%,
-    transparent 78%);
-}
-.case-banner figcaption {
-  position: absolute; left: clamp(1.1rem, 2.5vw, 1.5rem); bottom: .7rem; z-index: 1;
-  font-family: var(--mono); font-size: .7rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--accent);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
-}
+.case-banner img { display: block; width: 100%; height: auto; }
 
 .case-media {
   margin: 0;
@@ -389,6 +373,14 @@ h1 {
 }
 .case-link::after { content: " →"; }
 .case-link:hover { color: var(--text); }
+
+/* The case study is the primary destination; the repository is the receipt. */
+.case-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.25rem; margin: 0; }
+.case-repo {
+  font-family: var(--mono); font-size: .78rem; color: var(--text-faint);
+  text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 1px;
+}
+.case-repo:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ---------------------------------------------------------------- more */
 
@@ -545,6 +537,128 @@ h1 {
   display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: space-between;
 }
 .footer p { margin: 0; font-family: var(--mono); font-size: .76rem; color: var(--text-faint); }
+
+
+/* ================================================================ case study
+   Used only by the pages under /work/. Long-form reading, so the measure is
+   tight and the structure is numbered - these findings genuinely run in
+   order, each one resting on the one before.
+   ========================================================================= */
+
+.study { padding: clamp(2.25rem, 6vw, 4rem) 0 0; }
+.study-shell { max-width: 760px; margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.5rem); }
+
+.study h1 {
+  font-size: clamp(1.9rem, 5vw, 3rem); letter-spacing: -.025em;
+  line-height: 1.1; margin: 0 0 1rem;
+}
+.study-finding {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem); line-height: 1.5;
+  color: var(--text); margin: 0 0 1.5rem;
+}
+.study-finding strong { color: var(--accent); font-weight: 600; }
+
+/* Facts you scan rather than read: dataset, stack, test count. */
+.study-meta {
+  list-style: none; margin: 0 0 clamp(1.75rem, 4vw, 2.5rem); padding: 1rem 0 0;
+  border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem 1.5rem;
+}
+.study-meta dt {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: .25rem;
+}
+.study-meta dd { margin: 0; font-size: .88rem; line-height: 1.5; }
+
+.study-banner {
+  margin: 0 0 clamp(2rem, 5vw, 3rem);
+  background: #0a111f; border: 1px solid var(--rule); border-radius: var(--radius);
+  overflow: hidden;
+}
+.study-banner img { display: block; width: 100%; height: auto; }
+
+.study section { margin-bottom: clamp(2.25rem, 5vw, 3.25rem); }
+.study h2 {
+  font-size: clamp(1.25rem, 3vw, 1.6rem); letter-spacing: -.015em; margin: 0 0 .9rem;
+}
+/* Numbered findings: the count is information, so it is drawn, not faked
+   with a list marker that screen readers would read as decoration. */
+.study .finding h2::before {
+  content: counter(finding) " · ";
+  counter-increment: finding;
+  color: var(--accent); font-family: var(--mono); font-size: .8em; font-weight: 500;
+}
+.study-findings { counter-reset: finding; }
+
+.study p { margin: 0 0 1rem; color: var(--text-soft); max-width: 68ch; }
+.study p:last-child { margin-bottom: 0; }
+.study strong { color: var(--text); font-weight: 600; }
+.study em { color: var(--text); font-style: italic; }
+.study a { color: var(--link); }
+
+.study figure { margin: 1.5rem 0; }
+.study figure img {
+  display: block; width: 100%; height: auto;
+  background: #ffffff; border: 1px solid var(--rule-strong);
+  border-radius: 6px; padding: 6px;
+}
+.study figcaption {
+  margin-top: .55rem; font-family: var(--mono); font-size: .72rem;
+  color: var(--text-faint); line-height: 1.5;
+}
+
+/* Numbers in a table, not prose. */
+.study-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: .88rem; }
+.study-table th, .study-table td {
+  text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--rule);
+}
+.study-table th {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-faint); font-weight: 500;
+}
+.study-table td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+.study-table tr.best td { color: var(--text); }
+.study-table tr.best td:first-child { color: var(--accent); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+
+/* The section that separates a portfolio from a sales pitch. */
+.study-limits {
+  background: var(--bg-raised); border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: clamp(1.1rem, 3vw, 1.6rem);
+}
+.study-limits h2 { margin-top: 0; }
+.study-limits ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .6rem; }
+.study-limits li { color: var(--text-soft); line-height: 1.6; }
+
+.study-cta {
+  display: flex; flex-wrap: wrap; gap: .8rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--rule);
+}
+
+/* Previous / next, so the reader never dead-ends at the bottom of a page. */
+.study-nav {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+  margin-top: clamp(2rem, 5vw, 3rem); padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+.study-nav a {
+  font-family: var(--mono); font-size: .78rem; color: var(--text-faint); text-decoration: none;
+  max-width: 46%;
+}
+.study-nav a:hover { color: var(--accent); }
+.study-nav .dir {
+  display: block; font-size: .66rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: .2rem;
+}
+.study-nav a:hover .dir { color: var(--accent); }
+
+.backlink {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: .76rem; color: var(--text-faint);
+  text-decoration: none; margin-bottom: 1.5rem;
+}
+.backlink:hover { color: var(--accent); }
 
 
 /* ---------------------------------------------------------------- responsive */

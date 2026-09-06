@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit Risk Scorecard — Amos Odhiambo</title>
+<meta name="description" content="Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with a cut-off from lending economics and a four-way fairness audit.">
+
+<meta property="og:title" content="Credit Risk Scorecard — Amos Odhiambo">
+<meta property="og:description" content="Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with a cut-off from lending economics and a four-way fairness audit.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/credit-scorecard/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/credit.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/credit-scorecard/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Credit Risk Scorecard",
+  "description": "Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with a cut-off from lending economics and a four-way fairness audit.",
+  "url": "https://manookello.github.io/work/credit-scorecard/",
+  "image": "https://manookello.github.io/assets/banners/credit.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/credit-risk-scorecard"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Lending · scorecards · fairness</p>
+    <h1>Credit Risk Scorecard</h1>
+    <p class="study-finding">Approving everyone <em>loses</em> NT$8.09M. The model turns that into <strong>+NT$11.50M</strong> — and the interpretability tax is just 0.014 AUC.</p>
+
+    <dl class="study-meta">
+      <div><dt>Dataset</dt><dd>UCI Default of Credit Card Clients — 29,965 accounts, 22.1% default</dd></div>
+      <div><dt>Stack</dt><dd>scikit-learn · XGBoost · SHAP · Weight of Evidence</dd></div>
+      <div><dt>Tests</dt><dd>69, fully offline</dd></div>
+      <div><dt>Scorecard</dt><dd>KS 0.403 · Gini 0.526 · 28 features, 426–580 points</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/credit.webp" width="1440" height="288" alt="Default rate by score band, falling from 63% in the worst band to 6% in the best.">
+    </figure>
+
+    <section>
+      <p>The modelling is the easy half. The parts that decide whether a credit model can ship are whether you can explain a decline, whether the cut-off is defensible, and whether the model treats protected groups comparably.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>The number that justifies the model is not AUC</h2>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Held-out portfolio outcome</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Approval cut-off</td><td class="num">P(default) &lt; 0.155</td></tr>
+<tr><td>Approval rate</td><td class="num">56.9%</td></tr>
+<tr><td>Recall on defaulters declined</td><td class="num">73.5%</td></tr>
+<tr class="best"><td>Portfolio profit</td><td class="num">+NT$11.50M</td></tr>
+<tr><td>Profit if everyone were approved</td><td class="num">−NT$8.09M</td></tr>
+<tr class="best"><td>Value created by the model</td><td class="num">NT$19.59M</td></tr>
+</tbody></table></div>
+<p>Approving every applicant <em>loses money</em> on this portfolio — the default rate is high enough that unselected lending is unprofitable. That is more informative than any AUC.</p>
+<p>The cut-off comes from arithmetic, not from 0.5. With a 15% net interest margin and 65% loss given default, break-even risk is <code>p* = 0.15 / (0.15 + 0.65) = 0.1875</code>. A grid search maximising realised profit on validation independently lands on <strong>0.155</strong> — close to theory and slightly conservative, which is a useful check that the profit function and the threshold search agree.</p>
+<figure><img src="../../assets/case/credit-scorecard-gains.webp" width="900" height="345" loading="lazy" alt="Default rate by risk band and cumulative gains curve."><figcaption>The riskiest decile defaults at 69.5% — 3.14× lift. The top three deciles hold 62% of all defaults.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>PAY_1 dominates, and that is worth being honest about</h2>
+<p>Ranked by Information Value, <code>PAY_1</code> (most recent repayment status) scores 0.888 and three engineered delinquency features follow close behind. An IV above 0.5 conventionally means "check for leakage".</p>
+<p><strong>This is not leakage.</strong> <code>PAY_1</code> is September's repayment status and the target is default in October — genuinely observable at decision time.</p>
+<p>But it does mean something less flattering: the model is largely answering <em>"is this account already behind?"</em> rather than <em>"will a currently-healthy account go bad?"</em> The second question is the commercially valuable one, and this dataset barely supports it. SHAP agrees — <code>PAY_1</code> and <code>delinq_max</code> together account for roughly half of all attribution mass.</p>
+<figure><img src="../../assets/case/credit-scorecard-information_value.webp" width="900" height="840" loading="lazy" alt="Information Value ranking, with engineered features holding three of the top five slots."><figcaption>Engineered ratios and trends hold three of the top five slots.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>The interpretability tax, quantified</h2>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Metric</th><th>Scorecard (WoE + logistic)</th><th>Gradient boosting</th></tr></thead>
+<tbody>
+<tr><td>ROC AUC</td><td class="num">0.7630</td><td class="num">0.7770</td></tr>
+<tr><td>KS statistic</td><td class="num">0.4025</td><td class="num">0.4167</td></tr>
+<tr><td>Brier score</td><td class="num">0.1380</td><td class="num">0.1350</td></tr>
+</tbody></table></div>
+<p><strong>The interpretability tax is 0.014 AUC.</strong> That is the honest trade: the scorecard is line-by-line auditable, converts a decline into "your score was reduced primarily by months of delinquency", and satisfies a model-risk review. The boosted model is measurably better at ranking and cannot do any of that without SHAP bolted on.</p>
+<p>Quantifying the gap is what lets a credit committee make the call, instead of the modeller making it for them.</p>
+<p>Feature selection is two-stage: drop anything below an IV floor, then greedily prune correlated features, strongest IV first. That second step matters — six monthly utilisation ratios move together by construction, and left alone they split one effect across several coefficients, making the points table read as though the same fact is being charged for repeatedly. 50 features became 28.</p>
+      </section>
+      <section class="finding">
+        <h2>Fairness: measured, not assumed</h2>
+<p>Sex, age, marital status and education are excluded from the model matrix. That is necessary but not sufficient — correlated features carry the same information, so the only way to know is to measure outcomes.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Attribute</th><th>Parity ratio</th><th>Four-fifths</th><th>Equal-opportunity gap</th><th>AUC gap</th></tr></thead>
+<tbody>
+<tr><td>Marital status</td><td class="num">0.988</td><td>PASS</td><td class="num">0.028</td><td class="num">0.015</td></tr>
+<tr><td>Sex</td><td class="num">0.920</td><td>PASS</td><td class="num">0.046</td><td class="num">0.031</td></tr>
+<tr><td>Age</td><td class="num">0.904</td><td>PASS</td><td class="num">0.057</td><td class="num">0.031</td></tr>
+<tr class="best"><td>Education</td><td class="num">0.863</td><td>PASS</td><td class="num">0.042</td><td class="num">0.042</td></tr>
+</tbody></table></div>
+<p>All four clear the four-fifths screen. But "passes" is not "no issue". <strong>Education shows an 8.5pp approval-rate gap</strong> — 61.5% for graduate-school applicants against 53.1% for high-school applicants — and the largest AUC gap. The model ranks worst for the group it approves least (0.747 against 0.789), so its errors are concentrated where they hurt most.</p>
+<p>Three measures are reported rather than one because they disagree by design. Demographic parity ignores real differences in risk; equal opportunity looks only at applicants who would repay — the error that actually harms a creditworthy person; per-group AUC catches a model that hits parity while ranking one group close to randomly.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>This is a behavioural model, not an origination model. It scores accounts with six months of history; a real application scorecard sees a bureau file and an application form, and the strongest features here would not exist.</li>
+        <li>PAY_1 dominance limits the practical value. Flagging accounts that are already delinquent is easy; the money is in identifying currently-healthy accounts that will go bad.</li>
+        <li>AUC ≈ 0.78 is at the ceiling for this dataset. The gap to a real lender's model is data — bureau scores, income verification — not algorithm choice.</li>
+        <li>No reject inference. The data contains only approved accounts, so the model is fitted on a censored population and would drift once its own cut-off changed who gets approved.</li>
+        <li>The lending economics are illustrative — plausible for unsecured revolving debt, not measured from this portfolio.</li>
+        <li>A fairness screen is not a fairness guarantee. The four-fifths rule is a US employment-law heuristic applied here as a smoke test; passing it does not establish compliance with any lending regulation.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/credit-risk-scorecard" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../semantic-search/"><span class="dir">Previous</span>Semantic Search &amp; RAG</a>
+      <a href="../ab-testing/" style="text-align:right"><span class="dir">Next</span>A/B Test Toolkit</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

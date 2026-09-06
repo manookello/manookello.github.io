@@ -172,9 +172,8 @@
 
         <article class="case">
           <figure class="case-banner">
-            <img src="assets/photos/churn.webp" width="1024" height="205" loading="lazy"
-                 alt="Antenna masts and a radome standing against an open sky.">
-            <figcaption>Telecoms · subscriber retention</figcaption>
+            <img src="assets/banners/churn.webp" width="1440" height="288" loading="lazy"
+                 alt="Lift by risk decile: the riskiest decile churns at 2.83 times the base rate, with cumulative capture rising across the deciles.">
           </figure>
           <figure class="case-media">
             <img src="assets/figures/churn-profit.webp" width="1000" height="714" loading="lazy"
@@ -197,15 +196,14 @@
               The drift detector needed a Bonferroni correction — without it, 19 features produced roughly
               one false alarm on every clean window.</p>
             <p class="stack">Python · scikit-learn · XGBoost · MLflow · FastAPI · Docker · GitHub Actions</p>
-            <a class="case-link" href="https://github.com/manookello/mlops-churn-platform" target="_blank" rel="noopener">View repository</a>
+            <p class="case-links"><a class="case-link" href="work/churn-mlops/">Read the case study</a><a class="case-repo" href="https://github.com/manookello/mlops-churn-platform" target="_blank" rel="noopener">Repository</a></p>
           </div>
         </article>
 
         <article class="case">
           <figure class="case-banner">
-            <img src="assets/photos/forecast.webp" width="1440" height="288" loading="lazy"
-                 alt="A high-voltage transmission tower seen from below, lines radiating across the sky.">
-            <figcaption>Energy · daily electricity demand</figcaption>
+            <img src="assets/banners/forecast.webp" width="1440" height="288" loading="lazy"
+                 alt="MASE across 25 rolling origins for five forecasting models, with Theta highlighted as best on average but not on every fold.">
           </figure>
           <figure class="case-media">
             <img src="assets/figures/forecast-models.webp" width="1000" height="611" loading="lazy"
@@ -228,15 +226,14 @@
               Theta wins and seasonal naive is sixth of eight. The Gaussian prediction interval under-covers
               at 93.3%; split conformal holds 96.1%.</p>
             <p class="stack">Python · statsmodels · scikit-learn · conformal prediction</p>
-            <a class="case-link" href="https://github.com/manookello/demand-forecasting" target="_blank" rel="noopener">View repository</a>
+            <p class="case-links"><a class="case-link" href="work/demand-forecasting/">Read the case study</a><a class="case-repo" href="https://github.com/manookello/demand-forecasting" target="_blank" rel="noopener">Repository</a></p>
           </div>
         </article>
 
         <article class="case">
           <figure class="case-banner">
-            <img src="assets/photos/retail.webp" width="1440" height="288" loading="lazy"
-                 alt="An aisle between stacked, shrink-wrapped pallets in a distribution warehouse.">
-            <figcaption>Wholesale · transaction-level retail</figcaption>
+            <img src="assets/banners/retail.webp" width="1440" height="288" loading="lazy"
+                 alt="Cohort retention heatmap: 25 monthly cohorts, each decaying across the months that follow acquisition.">
           </figure>
           <figure class="case-media">
             <img src="assets/figures/retail-cohorts.webp" width="1000" height="636" loading="lazy"
@@ -259,15 +256,14 @@
               monotonically, since removing cancellations raises the total. Retention does not decay, which
               says this is a wholesale business, not consumer e-commerce.</p>
             <p class="stack">SQL · DuckDB · Python · pandas · Streamlit</p>
-            <a class="case-link" href="https://github.com/manookello/retail-analytics-sql" target="_blank" rel="noopener">View repository</a>
+            <p class="case-links"><a class="case-link" href="work/retail-analytics/">Read the case study</a><a class="case-repo" href="https://github.com/manookello/retail-analytics-sql" target="_blank" rel="noopener">Repository</a></p>
           </div>
         </article>
 
         <article class="case">
           <figure class="case-banner">
-            <img src="assets/photos/rag.webp" width="1024" height="205" loading="lazy"
-                 alt="Rows of library shelving filled with books.">
-            <figcaption>Retrieval · technical document corpus</figcaption>
+            <img src="assets/banners/rag.webp" width="1440" height="288" loading="lazy"
+                 alt="Recall@1, MRR and nDCG@10 for BM25, dense and hybrid retrieval, with keyword search ahead of the neural retriever on Recall@1.">
           </figure>
           <figure class="case-media">
             <img src="assets/figures/rag-metrics.webp" width="1000" height="565" loading="lazy"
@@ -289,7 +285,7 @@
               0.883 — at 175× the latency, which is the argument for two-stage retrieval rather than
               against reranking. BM25 is implemented from scratch so the ranking stays auditable.</p>
             <p class="stack">Python · sentence-transformers · BM25 · FastAPI · Claude API</p>
-            <a class="case-link" href="https://github.com/manookello/semantic-search-rag" target="_blank" rel="noopener">View repository</a>
+            <p class="case-links"><a class="case-link" href="work/semantic-search/">Read the case study</a><a class="case-repo" href="https://github.com/manookello/semantic-search-rag" target="_blank" rel="noopener">Repository</a></p>
           </div>
         </article>
 
@@ -301,7 +297,7 @@
         <li>
           <img class="more-thumb" src="assets/figures/credit-ks.webp" width="420" height="300" loading="lazy"
                alt="Kolmogorov-Smirnov separation curve for the credit scorecard.">
-          <div><a href="https://github.com/manookello/credit-risk-scorecard" target="_blank" rel="noopener">Credit Risk Scorecard</a>
+          <div><a href="work/credit-scorecard/">Credit Risk Scorecard</a>
             <p>Weight-of-Evidence scorecard against gradient boosting on 30,000 accounts, with an
               economics-derived approval cut-off and a fairness audit across four protected attributes.</p></div>
           <span class="more-metric">AUC 0.777 · KS 0.417</span>
@@ -309,7 +305,7 @@
         <li>
           <img class="more-thumb" src="assets/figures/abtest-peeking.webp" width="420" height="300" loading="lazy"
                alt="False positive rate rising with the number of interim looks at an A/B test.">
-          <div><a href="https://github.com/manookello/ab-test-toolkit" target="_blank" rel="noopener">A/B Test Toolkit</a>
+          <div><a href="work/ab-testing/">A/B Test Toolkit</a>
             <p>Experiment analysis with every method validated by simulation against known ground truth —
               power, CUPED, sample-ratio mismatch and Simpson's paradox detection.</p></div>
           <span class="more-metric">Peeking: 5% → 24.9%</span>
@@ -317,7 +313,7 @@
         <li>
           <img class="more-thumb" src="assets/figures/eda-macro.webp" width="460" height="367" loading="lazy"
                alt="Term deposit subscription rate by euribor quartile, far above baseline in the lowest quartile.">
-          <div><a href="https://github.com/manookello/customer-insights-eda" target="_blank" rel="noopener">Customer Insights EDA</a>
+          <div><a href="work/customer-insights/">Customer Insights EDA</a>
             <p>41,188 campaign contacts analysed with effect sizes and confidence intervals rather than
               p-values, ending in quantified recommendations.</p></div>
           <span class="more-metric">4.6× timing effect</span>
@@ -325,7 +321,7 @@
         <li>
           <img class="more-thumb" src="assets/figures/vision-gradcam.webp" width="420" height="384" loading="lazy"
                alt="Grad-CAM heatmaps overlaid on FashionMNIST garments, showing which pixels drove each prediction.">
-          <div><a href="https://github.com/manookello/pytorch-vision-classifier" target="_blank" rel="noopener">PyTorch Vision Classifier</a>
+          <div><a href="work/vision-classifier/">PyTorch Vision Classifier</a>
             <p>A residual CNN trained under a hard compute budget, with Grad-CAM explanations and
               numerically verified TorchScript and ONNX exports.</p></div>
           <span class="more-metric">91.8% · 218K params</span>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A/B Test Toolkit — Amos Odhiambo</title>
+<meta name="description" content="Experiment analysis where every method is validated against a known ground truth — including the peeking problem that makes one &#x27;win&#x27; in four spurious.">
+
+<meta property="og:title" content="A/B Test Toolkit — Amos Odhiambo">
+<meta property="og:description" content="Experiment analysis where every method is validated against a known ground truth — including the peeking problem that makes one &#x27;win&#x27; in four spurious.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/ab-testing/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/abtest.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/ab-testing/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "A/B Test Toolkit",
+  "description": "Experiment analysis where every method is validated against a known ground truth \u2014 including the peeking problem that makes one 'win' in four spurious.",
+  "url": "https://manookello.github.io/work/ab-testing/",
+  "image": "https://manookello.github.io/assets/banners/abtest.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/ab-test-toolkit"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Experimentation · simulation · validation</p>
+    <h1>A/B Test Toolkit</h1>
+    <p class="study-finding">Watching a test daily for three weeks and shipping on first significance is wrong <strong>one time in four</strong>, on experiments where nothing is happening at all.</p>
+
+    <dl class="study-meta">
+      <div><dt>Approach</dt><dd>Every claim simulated against known ground truth</dd></div>
+      <div><dt>Stack</dt><dd>NumPy · SciPy · statsmodels</dd></div>
+      <div><dt>Tests</dt><dd>69, asserting statistical properties</dd></div>
+      <div><dt>Validation</dt><dd>50,000 simulations under the null · FPR 0.0499 against 0.0500</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/abtest.webp" width="1440" height="288" alt="False positive rate rising from 5% to 24.9% as interim looks increase.">
+    </figure>
+
+    <section>
+      <p>A statistics library that is merely plausible is worthless — the failure mode is silent, wrong numbers that look entirely reasonable. So nothing here is asserted.</p>
+      <p>A test claiming α = 0.05 is simulated 50,000 times under the null to confirm it rejects 5% of the time. CUPED's variance reduction is measured against its theoretical value. Peeking is shown to inflate false positives, and the correction is shown to fix it.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>Peeking is not a small problem</h2>
+<p>Under <strong>no true effect whatsoever</strong>, checking the dashboard as data accumulates and stopping when it goes green:</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Interim looks</th><th>False positive rate</th><th>Inflation</th></tr></thead>
+<tbody>
+<tr><td>1 (fixed horizon)</td><td class="num">5.0%</td><td class="num">1.0×</td></tr>
+<tr><td>2</td><td class="num">8.3%</td><td class="num">1.7×</td></tr>
+<tr><td>5</td><td class="num">13.8%</td><td class="num">2.8×</td></tr>
+<tr><td>10</td><td class="num">19.5%</td><td class="num">3.9×</td></tr>
+<tr class="best"><td>20</td><td class="num">24.9%</td><td class="num">5.0×</td></tr>
+</tbody></table></div>
+<p>That is not a subtle statistical nicety — it is most of the "wins" in a badly run experimentation programme.</p>
+<p>The fix is cheap. A Pocock-style constant boundary, solved by simulating the correlated sequence of interim statistics, brings ten looks from a 19.2% false positive rate back to <strong>5.3%</strong>, at α = 0.0108 per look.</p>
+      </section>
+      <section class="finding">
+        <h2>CUPED is close to free sample size</h2>
+<p>Subtracting the part of the outcome that a pre-experiment covariate already explains removes between-user noise without touching the expected effect.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Correlation ρ</th><th>Theory (ρ²)</th><th>Measured</th><th>Worth this much extra traffic</th></tr></thead>
+<tbody>
+<tr><td>0.3</td><td class="num">0.0900</td><td class="num">0.0902</td><td class="num">1.10×</td></tr>
+<tr><td>0.5</td><td class="num">0.2500</td><td class="num">0.2499</td><td class="num">1.33×</td></tr>
+<tr class="best"><td>0.7</td><td class="num">0.4900</td><td class="num">0.4897</td><td class="num">1.96×</td></tr>
+<tr class="best"><td>0.9</td><td class="num">0.8100</td><td class="num">0.8098</td><td class="num">5.26×</td></tr>
+</tbody></table></div>
+<p>At ρ = 0.7 — an ordinary correlation between a user's pre-period and in-period behaviour — CUPED is worth <strong>doubling the sample size</strong>, for the cost of one covariance calculation.</p>
+<p>The claim that matters is that this is not bought with bias. Estimating a known true effect of 0.05 across 3,000 simulated experiments: naive mean 0.0492 with SD 0.0200; CUPED mean 0.0498 with SD 0.0143. Same centre, 28% narrower — and the ratio 0.717 matches the predicted √(1−ρ²) = 0.714.</p>
+<figure><img src="../../assets/case/ab-testing-cuped.webp" width="900" height="345" loading="lazy" alt="Measured CUPED variance reduction against theory, and the equivalent sample size multiplier."><figcaption>Measured variance reduction against ρ², and what it is worth in traffic.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Most experiments are not powered for the effects people hope for</h2>
+<p>At a 10% baseline conversion rate, α = 0.05, 80% power:</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Target lift</th><th>Per arm</th><th>Days at 5,000/arm/day</th></tr></thead>
+<tbody>
+<tr><td>+1% relative</td><td class="num">1,419,073</td><td class="num">284</td></tr>
+<tr><td>+2%</td><td class="num">356,335</td><td class="num">71</td></tr>
+<tr><td>+5%</td><td class="num">57,763</td><td class="num">12</td></tr>
+<tr><td>+10%</td><td class="num">14,751</td><td class="num">3</td></tr>
+</tbody></table></div>
+<p>Sample size scales with the <strong>inverse square</strong> of the effect, so halving the effect you want to detect quadruples the traffic. Turned around: with 10,000 users per arm you can only detect a <strong>+12.2%</strong> relative change.</p>
+<p>Any smaller true effect will mostly produce a null result — and "no significant difference" then means "we could not have seen it", which is a very different statement from "it does nothing".</p>
+<figure><img src="../../assets/case/ab-testing-power_curve.webp" width="900" height="643" loading="lazy" alt="Power against sample size for three effect sizes."><figcaption>Power against sample size. The curve is why small effects need enormous tests.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Validity beats precision</h2>
+<p>Three worked readouts ship with the repo, each exercising a different failure.</p>
+<p><strong>A clean win.</strong> +11.8% relative, p = 0.008, 95% CI [+0.16pp, +1.04pp], P(treatment better) = 99.6%. → Ship.</p>
+<p><strong>A sample ratio mismatch.</strong> A 50/50 design that delivered 20,800 / 19,200 — chi-square p = 1.2e-15. The effect looks mildly positive, but randomisation or logging is broken, so the estimate means nothing. → Do not ship, regardless of the effect. This check catches more bad decisions than any refinement of the test statistic.</p>
+<p><strong>Simpson's paradox.</strong> The aggregate says treatment is −10.7pp, catastrophic. Within desktop it is +2.4pp and within mobile +1.2pp — treatment helps <em>everyone</em>. It was simply served mostly to mobile users, who convert far worse. Reporting the aggregate would have killed a good feature.</p>
+<p>The readout runs in the order a reviewer should read it — validity, then effect, then decision — because an effect estimate from a broken experiment is worse than no estimate.</p>
+      </section>
+      <section class="finding">
+        <h2>A test of mine that was wrong in an instructive way</h2>
+<p>One test originally asserted that a single draw from two unequal-variance distributions would come out non-significant. That is asserting a coin flip: it passed locally and then failed on a different seed.</p>
+<p>It now measures the rejection <em>rate</em> over 600 trials, which is the property that was actually meant. The general lesson is that a statistical test suite has to assert distributions, not draws — and the same reasoning is why confidence intervals lead the readouts and p-values follow, why Wilson and Newcombe intervals replace Wald, and why the SRM threshold sits at 0.001 rather than 0.05.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>The validation studies use simulated data. That is deliberate — you cannot verify a false positive rate without knowing the ground truth, which real data never gives you. But it means these results validate the <em>methods</em>, not any product claim.</li>
+        <li>Fixed-horizon and Pocock only. No always-valid sequential inference (mSPRT, confidence sequences), which is what a mature platform would use to allow continuous monitoring honestly.</li>
+        <li>Binary and continuous metrics only. Ratio metrics need the delta method for correct variance; count metrics often need a negative binomial.</li>
+        <li>Independent randomisation units assumed. Any network effect, marketplace interference or repeated-measures structure breaks that, and none of these tests would notice.</li>
+        <li>No CUPED variant for binary outcomes with low base rates, where stratification often works better than the linear adjustment.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/ab-test-toolkit" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../credit-scorecard/"><span class="dir">Previous</span>Credit Risk Scorecard</a>
+      <a href="../customer-insights/" style="text-align:right"><span class="dir">Next</span>Customer Insights: Term Deposit Campaign</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

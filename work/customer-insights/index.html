@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Insights: Term Deposit Campaign — Amos Odhiambo</title>
+<meta name="description" content="41,188 campaign contacts analysed with effect sizes and confidence intervals, where the three strongest signals turned out not to be customer attributes at all.">
+
+<meta property="og:title" content="Customer Insights: Term Deposit Campaign — Amos Odhiambo">
+<meta property="og:description" content="41,188 campaign contacts analysed with effect sizes and confidence intervals, where the three strongest signals turned out not to be customer attributes at all.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://manookello.github.io/work/customer-insights/">
+<meta property="og:image" content="https://manookello.github.io/assets/banners/eda.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://manookello.github.io/work/customer-insights/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Customer Insights: Term Deposit Campaign",
+  "description": "41,188 campaign contacts analysed with effect sizes and confidence intervals, where the three strongest signals turned out not to be customer attributes at all.",
+  "url": "https://manookello.github.io/work/customer-insights/",
+  "image": "https://manookello.github.io/assets/banners/eda.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Amos Odhiambo",
+    "url": "https://manookello.github.io/"
+  },
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Amos Odhiambo \u2014 Selected work",
+    "url": "https://manookello.github.io/#work"
+  },
+  "codeRepository": "https://github.com/manookello/customer-insights-eda"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b1220'/><text y='.9em' x='50%' text-anchor='middle' font-size='58' font-family='monospace' fill='%23f5a524'>A</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-github" viewBox="0 0 16 16">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../../" aria-label="Amos Odhiambo, home">AO</a>
+    <nav aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#about">About</a>
+      <a href="../../#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to light theme">
+      <span aria-hidden="true" data-icon>☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="study">
+  <div class="study-shell">
+
+    <a class="backlink" href="../../#work">← All work</a>
+    <p class="eyebrow">Marketing analytics · inference · effect sizes</p>
+    <h1>Customer Insights: Term Deposit Campaign</h1>
+    <p class="study-finding">The three strongest signals in the entire dataset were <strong>macroeconomic, not customer attributes</strong>. This campaign was about <em>when</em>, not <em>who</em>.</p>
+
+    <dl class="study-meta">
+      <div><dt>Dataset</dt><dd>UCI Bank Marketing — 41,188 contacts, 11.27% subscribed</dd></div>
+      <div><dt>Stack</dt><dd>pandas · statsmodels · SciPy · Matplotlib</dd></div>
+      <div><dt>Tests</dt><dd>51, against deliberately planted relationships</dd></div>
+      <div><dt>Method</dt><dd>Cramér's V with Bergsma correction · Wilson intervals · BH correction</dd></div>
+    </dl>
+
+    <figure class="study-banner">
+      <img src="../../assets/banners/eda.webp" width="1440" height="288" alt="Adjusted odds ratios with 95% confidence intervals for the strongest terms.">
+    </figure>
+
+    <section>
+      <p>An exploratory analysis that ends in quantified recommendations, not a wall of charts.</p>
+      <p>Every association is reported with an effect size and a confidence interval, because with 41,188 rows a feature that moves the subscription rate by a third of a percentage point still returns p &lt; 0.001 — so p-values cannot rank anything.</p>
+    </section>
+
+    <div class="study-findings">
+      <section class="finding">
+        <h2>The campaign was mostly about when, not who</h2>
+<p>Ranked by effect size, the three strongest associations in the entire dataset are not customer attributes at all: national employment (0.498), the 3-month euribor rate (0.487) and employment variation (0.434). The strongest customer attribute, previous campaign outcome, comes fourth at 0.320. Age, linearly, scores <strong>0.030 — negligible</strong>.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Euribor quartile</th><th>Contacts</th><th>Subscription rate</th></tr></thead>
+<tbody>
+<tr class="best"><td>Q1 (lowest rates)</td><td class="num">10,543</td><td class="num">25.4%</td></tr>
+<tr><td>Q2</td><td class="num">11,512</td><td class="num">8.3%</td></tr>
+<tr><td>Q3</td><td class="num">9,342</td><td class="num">5.1%</td></tr>
+<tr><td>Q4 (highest rates)</td><td class="num">9,791</td><td class="num">5.5%</td></tr>
+</tbody></table></div>
+<p>A <strong>4.6× difference</strong>, driven by nothing the bank chose. The campaign ran through the financial crisis: when rates collapsed a fixed-rate term deposit became attractive and people bought it; when rates were high, no amount of calling helped.</p>
+<p><strong>Any "who should we call" model fitted on this data without accounting for the macro environment is largely learning the calendar.</strong></p>
+      </section>
+      <section class="finding">
+        <h2>The strongest predictor is unusable</h2>
+<p><code>duration</code> — the length of the call in seconds — correlates with subscription at 0.405, stronger than any customer attribute. It is also <strong>useless</strong>, and including it is the most common error in published analyses of this dataset.</p>
+<p>Subscribers' calls averaged 553 seconds; non-subscribers' 221. Of the 4,181 calls lasting under a minute, <strong>0.02% converted</strong> — 1 in 4,181.</p>
+<p>The direction of causation runs the wrong way. A call is long <em>because</em> it is going well. Duration is known only once the call has ended, so it can describe a conversation that happened — it cannot tell anyone who to ring tomorrow. It is excluded from every recommendation here.</p>
+      </section>
+      <section class="finding">
+        <h2>Cap contacts at three, and use the list you already have</h2>
+<p>Conversion falls <strong>53%</strong> from the first contact (13.0%) to the fifth or later (6.1%), and the campaign made up to <strong>56 calls to a single person</strong>. A cap of three removes a quarter of all call volume for 12% of subscriptions — the point where the two curves separate most.</p>
+<div class="table-scroll"><table class="study-table">
+<thead><tr><th>Previous campaign outcome</th><th>Subscription rate</th><th>Lift</th></tr></thead>
+<tbody>
+<tr class="best"><td>Success</td><td class="num">65.1%</td><td class="num">5.8×</td></tr>
+<tr><td>Failure</td><td class="num">14.2%</td><td class="num">1.3×</td></tr>
+<tr><td>Never contacted</td><td class="num">8.8%</td><td class="num">0.8×</td></tr>
+</tbody></table></div>
+<p>A customer who took the last offer takes this one 65% of the time, against an 11.3% baseline — an adjusted odds ratio of <strong>8.35 [7.17, 9.74]</strong>, the largest effect the bank actually controls. And only <strong>3.7%</strong> of the contact list had ever been contacted before. This list is being under-used.</p>
+<figure><img src="../../assets/case/customer-insights-contact_decay.webp" width="900" height="332" loading="lazy" alt="Conversion by contact number, and what each contact cap costs."><figcaption>Conversion by contact number, and the cost of each cap.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Age is a band, not a trend</h2>
+<p>Conversion is <strong>U-shaped</strong>. Under-25s convert at 24.0% and over-60s at 39.6%; the 40–49 band — the largest group in the contact list at 10,526 people — converts <em>worst</em>, at 7.9%.</p>
+<p>A linear age term reports a correlation of 0.030 and would conclude age does not matter. Averaging over a U-shape produces exactly that: a near-zero coefficient hiding two strong, opposite effects. This is the argument for looking at banded rates before fitting anything.</p>
+<figure><img src="../../assets/case/customer-insights-age_bands.webp" width="900" height="562" loading="lazy" alt="Subscription rate by age band with confidence intervals, showing a U-shape."><figcaption>Subscription by age band, with Wilson intervals.</figcaption></figure>
+      </section>
+      <section class="finding">
+        <h2>Two bugs worth recording</h2>
+<p>Folding rare categories into a new <code>"other"</code> bucket looked tidier and was wrong. <code>get_dummies(drop_first=True)</code> then made that 3-row bucket the <em>reference level</em>, so the two remaining <code>default</code> dummies summed to 1 for all but 3 rows and were near-aliased with the intercept. The fit produced coefficients of <strong>+17.3 and +16.8 against an intercept of −18.3</strong> and failed to converge — all from three rows.</p>
+<p>Rare levels are now folded into the <strong>modal</strong> level, and remaining aliasing is removed by a rank-revealing QR decomposition rather than by hand-picking columns. The pipeline also raises if the optimiser fails to converge, because a non-converged fit still returns ordinary-looking numbers.</p>
+<p>The second was mine, in the prose rather than the model: the generated euribor recommendation said the lowest quartile converted at 5.5% when the data said 25.4% — the two figures transposed. There is now a regression test asserting that the figure described as the lowest quartile is the lowest quartile's.</p>
+      </section>
+    </div>
+
+    <section class="study-limits">
+      <h2>What this does not support</h2>
+      <ul>
+        <li>This is association, not causation. Nothing was randomised. The contact-cap recommendation is the most exposed — customers called five times may differ systematically from those called once, so the decay is partly selection, not fatigue alone.</li>
+        <li>The macro finding is confounded with time. Euribor, employment and calendar month all move together over 2008–2010, and with one campaign there is no way to separate them.</li>
+        <li>Only 3.7% of contacts had a prior campaign history, so the 65.1% success rate rests on 1,373 people and will not survive being scaled to the whole base.</li>
+        <li>One bank, one product, one country, 2008–2010 — a crisis period, which is precisely what makes the macro effect so visible and so unlikely to replicate.</li>
+        <li><code>duration</code> is excluded, which lowers every apparent effect. That is the point, but it means these numbers are not comparable with published analyses that leave it in.</li>
+      </ul>
+    </section>
+
+    <div class="study-cta">
+      <a class="btn btn-primary" href="https://github.com/manookello/customer-insights-eda" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn btn-ghost" href="../../#contact">Get in touch</a>
+    </div>
+
+    <nav class="study-nav" aria-label="Other case studies">
+      <a href="../ab-testing/"><span class="dir">Previous</span>A/B Test Toolkit</a>
+      <a href="../vision-classifier/" style="text-align:right"><span class="dir">Next</span>FashionMNIST Residual CNN</a>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <p>© <span id="year">2026</span> Amos Odhiambo · Nairobi, Kenya</p>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
