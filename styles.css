@@ -384,12 +384,8 @@ h1 {
 
 /* ---------------------------------------------------------------- more */
 
-/* Lighter than .more: no thumbnail, no metric. These are repositories worth
+/* Lighter than .more: no thumbnail, no metric. These are links worth
    listing, not results worth arguing, and the hierarchy should say so. */
-.subhead-note {
-  max-width: 62ch; margin: -.5rem 0 1.25rem;
-  font-size: .9rem; color: var(--text-faint);
-}
 .earlier {
   list-style: none; margin: 0 0 clamp(1.5rem, 3vw, 2rem); padding: 0;
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
