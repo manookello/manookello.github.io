@@ -231,8 +231,13 @@ h1 {
 .hero-photo { margin: 0; }
 .hero-photo img {
   display: block;
-  width: clamp(190px, 26vw, 300px); height: auto;
-  border-radius: var(--radius);
+  width: clamp(190px, 26vw, 300px);
+  /* aspect-ratio + cover keeps it a true circle rather than an ellipse, even
+     if the portrait is ever swapped for one that is not square. */
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
   border: 1px solid var(--rule-strong);
   filter: saturate(1.02);
 }
