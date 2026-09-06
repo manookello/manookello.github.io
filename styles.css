@@ -238,7 +238,10 @@ h1 {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid var(--rule-strong);
+  /* Amber ring, held off the photo by a dark gap so it reads as a ring
+     rather than a thick border. Matches the share card. */
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px var(--bg);
   filter: saturate(1.02);
 }
 
@@ -543,18 +546,6 @@ h1 {
 }
 .footer p { margin: 0; font-family: var(--mono); font-size: .76rem; color: var(--text-faint); }
 
-/* Credits are a legal requirement, not a headline: present but folded away. */
-.credits { margin-top: 1.1rem; border-top: 1px solid var(--rule); padding-top: .9rem; }
-.credits summary {
-  cursor: pointer; font-family: var(--mono); font-size: .72rem;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint);
-}
-.credits summary:hover { color: var(--accent); }
-.credits ul { margin: .8rem 0 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
-.credits li, .credits > p {
-  font-size: .76rem; line-height: 1.6; color: var(--text-faint); margin: 0;
-}
-.credits > p { margin-top: .7rem; }
 
 /* ---------------------------------------------------------------- responsive */
 
